@@ -28,7 +28,7 @@ export class AppComponent {
         this.router.navigate(['mobile-home']);
       }
       else
-        this.router.navigate(['sign-up']);
+        this.router.navigate(['home']);
     });
   }
 }
