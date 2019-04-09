@@ -5,6 +5,12 @@ const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'mobile-home', loadChildren: './mobile-home/mobile-home.module#MobileHomePageModule' },
+  { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
+  { path: 'mobile-sign-up', loadChildren: './mobile-sign-up/mobile-sign-up.module#MobileSignUpPageModule' },
+  { path: 'log-in', loadChildren: './log-in/log-in.module#LogInPageModule' },
+  { path: 'mobile-log-in', loadChildren: './mobile-log-in/mobile-log-in.module#MobileLogInPageModule' },
+  { path: 'user-home', loadChildren: './user-home/user-home.module#UserHomePageModule' },
+  { path: 'mobile-user-home', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
 ];
 
 @NgModule({
