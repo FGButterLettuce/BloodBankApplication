@@ -21,6 +21,8 @@ export class LogInPage implements OnInit {
   login(){
     this.emiratesId;
     this.mobileNo;
+    //add authenticate function 
+    this.router.navigate(['mobile-user-home/',this.emiratesId]);
   }
 
   signup(){

@@ -9,8 +9,10 @@ const routes: Routes = [
   { path: 'mobile-sign-up', loadChildren: './mobile-sign-up/mobile-sign-up.module#MobileSignUpPageModule' },
   { path: 'log-in', loadChildren: './log-in/log-in.module#LogInPageModule' },
   { path: 'mobile-log-in', loadChildren: './mobile-log-in/mobile-log-in.module#MobileLogInPageModule' },
-  { path: 'user-home', loadChildren: './user-home/user-home.module#UserHomePageModule' },
-  { path: 'mobile-user-home', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
+  { path: 'user-home/:id', loadChildren: './user-home/user-home.module#UserHomePageModule' },
+  { path: 'mobile-user-home/:id', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
+  { path: 'points', loadChildren: './user/points/points.module#PointsPageModule' },
+  { path: 'schedule', loadChildren: './user/schedule/schedule.module#SchedulePageModule' },
 ];
 
 @NgModule({

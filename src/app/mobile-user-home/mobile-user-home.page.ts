@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-user-home',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mobile-user-home.page.scss'],
 })
 export class MobileUserHomePage implements OnInit {
-
-  constructor() { }
+  eID: string;
+  constructor(private acr:ActivatedRoute) { }
 
   ngOnInit() {
+    this.eID = this.acr.snapshot.paramMap.get('id');
   }
 
 }

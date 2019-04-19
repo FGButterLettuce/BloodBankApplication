@@ -1,9 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mobile-user-home</ion-title>
+<ion-header >
+  <ion-toolbar text-center color="dark">
+    <h3> <ion-icon name="water" color="danger" size= "medium"></ion-icon> Blood Donation</h3>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <h2 class="active"> Welcome {{eID}} </h2>
+          <!-- <h2 class="inactive underlineHover">Sign Up </h2> -->
+      
+          <!-- Icon -->
+          <div class="fadeIn first">
+              <h1>Points</h1>
+              <h1 [countUp]="999" >0</h1>
+
+          </div>
+
+          <div text-center>            
+              <ion-button color = "light" size = "large">
+                View Points
+              </ion-button>
+              <br>
+              <ion-button color = "light" size = "large">
+                    Schedule Donation
+              </ion-button>
+             <br>
+              <ion-button color = "light" size = "large">
+                    View Calendar
+              </ion-button>
+            </div>
+            <div id="formFooter">
+                <!-- <a class="underlineHover" (click)="signup()">Dont have an account?</a> -->
+              </div>
+            </div>
+          </div>
 
 </ion-content>

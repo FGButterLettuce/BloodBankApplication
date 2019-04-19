@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MobileUserHomePage } from './mobile-user-home.page';
-import { CountUpModule } from 'countup.js-angular2';
-
+import { SchedulePage } from './schedule.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MobileUserHomePage
+    component: SchedulePage
   }
 ];
 
@@ -21,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    CountUpModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [MobileUserHomePage]
+  declarations: [SchedulePage]
 })
-export class MobileUserHomePageModule {}
+export class SchedulePageModule {}
