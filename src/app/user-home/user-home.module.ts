@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { UserHomePage } from './user-home.page';
+import { CountUpModule } from 'countup.js-angular2';
+
 
 const routes: Routes = [
   {
@@ -19,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    CountUpModule,
     RouterModule.forChild(routes)
   ],
   declarations: [UserHomePage]

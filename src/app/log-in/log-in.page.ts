@@ -22,7 +22,7 @@ export class LogInPage implements OnInit {
     this.emiratesId;
     this.mobileNo;
     //add authenticate function 
-    this.router.navigate(['mobile-user-home/',this.emiratesId]);
+    this.router.navigate(['user-home/',this.emiratesId]);
   }
 
   signup(){

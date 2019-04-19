@@ -1,7 +1,5 @@
 
 <body>
-
-
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
@@ -16,10 +14,18 @@
       <!-- Login Form -->
       <form>
         <h2>Emirates ID</h2>
-        <input type="text" id="emiratesId" class="fadeIn second" name="signup" value="" [(ngModel)]="emiratesId" placeholder="xxx-xxxx-xxxxxxx-x">
+        <input type="text" id="emiratesId" class="fadeIn second" name="eID" required [(ngModel)]="emiratesId" placeholder="xxx-xxxx-xxxxxxx-x">
         <h2>Mobile Number</h2>
-        <input type="text" id="mobileNum" class="fadeIn third" name="signup" [(ngModel)]="mobileNo" placeholder="+971-5X-XXXXXXX">
-        <input type="submit" class="fadeIn fourth" value="Sign Up" (click)="signup()">
+        <input type="text" id="mobileNum" class="fadeIn third" name="pNo" required [(ngModel)]="mobileNo" placeholder="+971-5X-XXXXXXX">
+        <h2>Email</h2>
+        <input type="text" id="email" class="fadeIn fourth" name="email" required [(ngModel)]="email" placeholder="example@example.com">
+        <h2>Password</h2>
+        <input type="text" id="password" class="fadeIn fifth" name="pwd" required [(ngModel)]="password1" placeholder="Use a strong password">
+        <br>
+        <h2>Confirm Password</h2>
+        <input type="text" id="mobileNum" class="fadeIn fifth" name="pwd" required [(ngModel)]="password2" placeholder="Re-enter password">
+        <br>
+        <input type="submit" class="fadeIn sixth" value="Sign Up" (click)="signup()">
       </form>
   
       <!-- Remind Password -->
@@ -28,6 +34,4 @@
       </div>
     </div>
   </div>
-
-  
 </body>

@@ -6,35 +6,28 @@
 
 <ion-content>
     <div class="wrapper fadeInDown">
-        <div id="formContent">
-          <!-- Tabs Titles -->
-          <h2 class="active"> Welcome {{eID}} </h2>
-          <!-- <h2 class="inactive underlineHover">Sign Up </h2> -->
+      <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> Welcome {{eID}} </h2>
       
           <!-- Icon -->
           <div class="fadeIn first">
-              <h1>Points</h1>
-              <h1 [countUp]="999" >0</h1>
-
-          </div>
-
-          <div text-center>            
-              <ion-button color = "light" size = "large">
-                View Points
-              </ion-button>
-              <br>
-              <ion-button color = "light" size = "large">
-                    Schedule Donation
-              </ion-button>
-             <br>
-              <ion-button color = "light" size = "large">
-                    View Calendar
-              </ion-button>
+              <h1>POINTS</h1><h1 [countUp]="999" >0</h1>
             </div>
-            <div id="formFooter">
-                <!-- <a class="underlineHover" (click)="signup()">Dont have an account?</a> -->
-              </div>
-            </div>
-          </div>
 
+        <div text-center>            
+          <ion-button shape="round" color = "danger" size = "medium" (click) = "points()" >
+              <ion-icon name="filing"></ion-icon>&nbsp;View Point History
+          </ion-button>
+          <br>
+          <ion-button shape="round"  color = "danger" size = "medium" (click) = "schedule()">
+              <ion-icon name="water"></ion-icon>&nbsp;Schedule Donation
+          </ion-button>
+          <br>
+          <ion-button shape="round"  color = "danger" size = "medium">
+              <ion-icon name="calendar"></ion-icon>&nbsp;View Event Calendar
+          </ion-button>
+        </div>
+      </div>
+    </div>
 </ion-content>

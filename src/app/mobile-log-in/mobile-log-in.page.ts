@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-log-in',
@@ -11,13 +11,16 @@ export class MobileLogInPage implements OnInit {
   emiratesId: string;
   mobileNo: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private acr:ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   login(){
-    
+    this.emiratesId;
+    this.mobileNo;
+    //add authenticate function 
+    this.router.navigate(['mobile-user-home/',this.emiratesId]);
   }
 
   signup(){
