@@ -5,26 +5,25 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PointsPage } from './points.page';
+import { MobilePointsPage } from './mobile-points.page';
 
 import { CountUpModule } from 'countup.js-angular2';
-
 
 const routes: Routes = [
   {
     path: '',
-    component: PointsPage
+    component: MobilePointsPage
   }
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
+  CommonModule,
     FormsModule,
-    IonicModule,
     CountUpModule,
+    IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PointsPage]
+  declarations: [MobilePointsPage]
 })
-export class PointsPageModule {}
+export class MobilePointsPageModule {}

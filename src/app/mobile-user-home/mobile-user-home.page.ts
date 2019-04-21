@@ -15,7 +15,7 @@ export class MobileUserHomePage implements OnInit {
   }
 
   points(){
-    this.router.navigate(['points',this.eID]);
+    this.router.navigate(['mobile-points',this.eID]);
   }
   schedule(){
     this.router.navigate(['schedule',this.eID]);

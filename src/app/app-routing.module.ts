@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'mobile-user-home/:id', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
   { path: 'points/:id', loadChildren: './user/points/points.module#PointsPageModule' },
   { path: 'schedule', loadChildren: './user/schedule/schedule.module#SchedulePageModule' },
+  { path: 'mobile-points/:id', loadChildren: './user/mobile-points/mobile-points.module#MobilePointsPageModule' },
 ];
 
 @NgModule({

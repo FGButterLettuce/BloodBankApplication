@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { CountUpModule } from 'countup.js-angular2';
+import * as moment from 'moment';
 
 
 @NgModule({

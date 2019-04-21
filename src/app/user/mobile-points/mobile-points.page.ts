@@ -4,11 +4,11 @@ import * as moment from 'moment';
 
 
 @Component({
-  selector: 'app-points',
-  templateUrl: './points.page.html',
-  styleUrls: ['./points.page.scss'],
+  selector: 'app-mobile-points',
+  templateUrl: './mobile-points.page.html',
+  styleUrls: ['./mobile-points.page.scss'],
 })
-export class PointsPage implements OnInit {
+export class MobilePointsPage implements OnInit {
 
   id: Number;
   points: 
