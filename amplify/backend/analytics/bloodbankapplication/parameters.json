@@ -1,0 +1,20 @@
+{
+    "appName": "bloodbankapplication",
+    "roleName": "pinpointLambdaRolea66d0bad",
+    "cloudWatchPolicyName": "cloudWatchPolicya66d0bad",
+    "pinpointPolicyName": "pinpointPolicya66d0bad",
+    "authPolicyName": "pinpoint_amplify_a66d0bad",
+    "unauthPolicyName": "pinpoint_amplify_a66d0bad",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

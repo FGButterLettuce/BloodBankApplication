@@ -7,17 +7,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./user-home.page.scss'],
 })
 export class UserHomePage implements OnInit {
-  eID: string;
+  user:any;
+  name: string;
   
   constructor(private acr:ActivatedRoute, private router:Router) {
-    this.eID = this.acr.snapshot.paramMap.get('id');
-
+    this.user = this.acr.snapshot.paramMap.get('id');
+    this.name = this.user.name;
    }
 
   ngOnInit() {
   }
   points(){
-    this.router.navigate(['points',this.eID])
+    this.router.navigate(['points',this.user])
   }
 
 }

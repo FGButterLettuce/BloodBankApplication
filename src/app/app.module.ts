@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
+
 import { CountUpModule } from 'countup.js-angular2';
 import * as moment from 'moment';
 
@@ -17,9 +20,10 @@ import * as moment from 'moment';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule, AmplifyAngularModule],
   providers: [
     StatusBar,
+    AmplifyService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

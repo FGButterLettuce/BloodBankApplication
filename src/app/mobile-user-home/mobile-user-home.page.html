@@ -1,33 +1,36 @@
-<ion-header >
+<ion-header>
   <ion-toolbar text-center color="dark">
-    <h3> <ion-icon name="water" color="danger" size= "medium"></ion-icon> Blood Donation</h3>
+    <h3>
+      <ion-icon name="water" color="danger" size="medium"></ion-icon> Blood Donation
+    </h3>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <!-- Tabs Titles -->
-        <h2 class="active"> Welcome {{eID}} </h2>
-      
-          <!-- Icon -->
-          <div class="fadeIn first">
-              <h1>POINTS</h1><h1 [countUp]="999" >0</h1>
-            </div>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Welcome {{eID}} </h2>
 
-        <div text-center>            
-          <ion-button shape="round" color = "danger" size = "medium" (click) = "points()" >
-              <ion-icon name="filing"></ion-icon>&nbsp;View Point History
-          </ion-button>
-          <br>
-          <ion-button shape="round"  color = "danger" size = "medium" (click) = "schedule()">
-              <ion-icon name="water"></ion-icon>&nbsp;Schedule Donation
-          </ion-button>
-          <br>
-          <ion-button shape="round"  color = "danger" size = "medium">
-              <ion-icon name="calendar"></ion-icon>&nbsp;View Event Calendar
-          </ion-button>
-        </div>
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <h1>POINTS</h1>
+        <h1 [countUp]="999">0</h1>
+      </div>
+
+      <div text-center>
+        <ion-button shape="round" color="danger" size="medium" (click)="points()">
+          <ion-icon name="filing"></ion-icon>&nbsp;View Point History
+        </ion-button>
+        <br>
+        <ion-button shape="round" color="danger" size="medium" (click)="schedule()">
+          <ion-icon name="water"></ion-icon>&nbsp;Schedule Donation
+        </ion-button>
+        <br>
+        <ion-button shape="round" color="danger" size="medium">
+          <ion-icon name="calendar"></ion-icon>&nbsp;View Event Calendar
+        </ion-button>
       </div>
     </div>
+  </div>
 </ion-content>
