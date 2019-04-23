@@ -14,15 +14,15 @@
         },
     
     
-          "functiondonorlamName": {
+          "functiondonorlambdaName": {
             "Type": "String",
-            "Default": "functiondonorlamName"
+            "Default": "functiondonorlambdaName"
           },
         
           
-          "functiondonorlamArn": {
+          "functiondonorlambdaArn": {
             "Type": "String",
-            "Default": "functiondonorlamArn"
+            "Default": "functiondonorlambdaArn"
           }
         
           
@@ -173,7 +173,7 @@
                             
                             {
                                 
-                                "Ref": "functiondonorlamArn"
+                                "Ref": "functiondonorlambdaArn"
                             },
                             
                             "/invocations"
@@ -272,7 +272,7 @@
                           
                           {
                             
-                            "Ref": "functiondonorlamArn"
+                            "Ref": "functiondonorlambdaArn"
                           },
                           
                           "/invocations"
@@ -329,12 +329,12 @@
                   
         
         
-        "functiondonorlamPermissiondonorapi": {
+        "functiondonorlambdaPermissiondonorapi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functiondonorlamName"
+                        "Ref":  "functiondonorlambdaName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
