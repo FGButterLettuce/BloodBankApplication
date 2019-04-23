@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-mobile-home',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MobileHomePage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public session: SessionService,private router: Router) { }
 
   ngOnInit() {
   }

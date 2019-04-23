@@ -61,7 +61,7 @@ var MobileUserHomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar text-center color=\"dark\">\n    <h3>\n      <ion-icon name=\"water\" color=\"danger\" size=\"medium\"></ion-icon> Blood Donation\n    </h3>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <!-- Tabs Titles -->\n      <h2 class=\"active\"> Welcome {{eID}} </h2>\n\n      <!-- Icon -->\n      <div class=\"fadeIn first\">\n        <h1>POINTS</h1>\n        <h1 [countUp]=\"999\">0</h1>\n      </div>\n\n      <div text-center>\n        <ion-button shape=\"round\" color=\"danger\" size=\"medium\" (click)=\"points()\">\n          <ion-icon name=\"filing\"></ion-icon>&nbsp;View Point History\n        </ion-button>\n        <br>\n        <ion-button shape=\"round\" color=\"danger\" size=\"medium\" (click)=\"schedule()\">\n          <ion-icon name=\"water\"></ion-icon>&nbsp;Schedule Donation\n        </ion-button>\n        <br>\n        <ion-button shape=\"round\" color=\"danger\" size=\"medium\">\n          <ion-icon name=\"calendar\"></ion-icon>&nbsp;View Event Calendar\n        </ion-button>\n      </div>\n    </div>\n  </div>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar text-center color=\"dark\">\n    <h3>\n      <ion-icon name=\"water\" color=\"danger\" size=\"medium\"></ion-icon> Blood Donation\n    </h3>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <!-- Tabs Titles -->\n      <h2 class=\"active\"> Welcome {{name}} </h2>\n\n      <!-- Icon -->\n      <div class=\"fadeIn first\">\n        <h1>POINTS</h1>\n        <h1 [countUp]=\"999\">0</h1>\n      </div>\n\n      <div text-center>\n        <ion-button shape=\"round\" color=\"danger\" size=\"medium\" (click)=\"points()\">\n          <ion-icon name=\"filing\"></ion-icon>&nbsp;View Point History\n        </ion-button>\n        <br>\n        <ion-button shape=\"round\" color=\"danger\" size=\"medium\" (click)=\"schedule()\">\n          <ion-icon name=\"water\"></ion-icon>&nbsp;Schedule Donation\n        </ion-button>\n        <br>\n        <ion-button shape=\"round\" color=\"danger\" size=\"medium\">\n          <ion-icon name=\"calendar\"></ion-icon>&nbsp;View Event Calendar\n        </ion-button>\n      </div>\n    </div>\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -89,23 +89,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+
 
 
 
 var MobileUserHomePage = /** @class */ (function () {
-    function MobileUserHomePage(acr, router) {
+    function MobileUserHomePage(session, acr, router) {
+        this.session = session;
         this.acr = acr;
         this.router = router;
+        this.name = this.session.user.attributes.name;
     }
     MobileUserHomePage.prototype.ngOnInit = function () {
-        this.eID = this.acr.snapshot.paramMap.get('id');
     };
-    MobileUserHomePage.prototype.points = function () {
-        this.router.navigate(['mobile-points', this.eID]);
-    };
-    MobileUserHomePage.prototype.schedule = function () {
-        this.router.navigate(['schedule', this.eID]);
-    };
+    // points(){
+    //   this.router.navigate(['mobile-points']);
+    // }
+    // schedule(){
+    //   this.router.navigate(['schedule']);
+    // }
     MobileUserHomePage.prototype.getPoints = function () {
         //getpoints from object
     };
@@ -115,7 +118,7 @@ var MobileUserHomePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./mobile-user-home.page.html */ "./src/app/mobile-user-home/mobile-user-home.page.html"),
             styles: [__webpack_require__(/*! ./mobile-user-home.page.scss */ "./src/app/mobile-user-home/mobile-user-home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_3__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], MobileUserHomePage);
     return MobileUserHomePage;
 }());

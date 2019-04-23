@@ -86,11 +86,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+
 
 
 
 var MobileHomePage = /** @class */ (function () {
-    function MobileHomePage(router) {
+    function MobileHomePage(session, router) {
+        this.session = session;
         this.router = router;
     }
     MobileHomePage.prototype.ngOnInit = function () {
@@ -107,7 +110,7 @@ var MobileHomePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./mobile-home.page.html */ "./src/app/mobile-home/mobile-home.page.html"),
             styles: [__webpack_require__(/*! ./mobile-home.page.scss */ "./src/app/mobile-home/mobile-home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_3__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], MobileHomePage);
     return MobileHomePage;
 }());

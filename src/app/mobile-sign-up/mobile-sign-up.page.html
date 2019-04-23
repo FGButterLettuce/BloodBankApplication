@@ -1,39 +1,58 @@
-<ion-header >
-    <ion-toolbar text-center color="dark">
-      <h3> <ion-icon name="water" color="danger" size= "medium"></ion-icon> Blood Donation</h3>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar text-center color="dark">
+    <h3>
+      <ion-icon name="water" color="danger" size="medium"></ion-icon> Blood Donation
+    </h3>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <!-- Tabs Titles -->
-        <h2 class="active"> Sign Up </h2>
-        <!-- <h2 class="inactive underlineHover">Sign Up </h2> -->
-    
-        <!-- Icon -->
-        <div class="fadeIn first">
-          <ion-icon name="contact" color="danger" size="large"></ion-icon>
-        </div>
-    
-        <!-- Sign-up Form -->
-        <form>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Sign Up </h2>
+      <!-- <h2 class="inactive underlineHover">Sign Up </h2> -->
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <ion-icon name="contact" color="danger" size="large"></ion-icon>
+      </div>
+
+      <!-- Sign-up Form -->
+      <form>
+        <div *ngIf="!alive">
           <h2>Emirates ID</h2>
-          <input type="text" id="emiratesId" class="fadeIn second" name="eID" required [(ngModel)]="emiratesId" placeholder="xxx-xxxx-xxxxxxx-x">
-          <h2>Mobile Number</h2>
-          <input type="text" id="mobileNum" class="fadeIn third" name="pNo" required [(ngModel)]="mobileNo" placeholder="+971-5X-XXXXXXX">
+          <input type="text" id="emiratesId" class="fadeIn second" name="eID" required [(ngModel)]="emiratesId"
+            placeholder="xxx-xxxx-xxxxxxx-x">
+          <h2>Name</h2>
+          <input type="text" id="name" class="fadeIn third" name="pNo" required [(ngModel)]="name"
+            placeholder="+971-5X-XXXXXXX">
           <h2>Email</h2>
-          <input type="text" id="mobileNum" class="fadeIn fourth" name="email" required [(ngModel)]="mobileNo" placeholder="+971-5X-XXXXXXX">
+          <input type="text" id="email" class="fadeIn fourth" name="email" required [(ngModel)]="email"
+            placeholder="example@example.com">
           <h2>Password</h2>
-          <input type="text" id="mobileNum" class="fadeIn fifth" name="pwd" required [(ngModel)]="mobileNo" placeholder="+971-5X-XXXXXXX">
+          <input type="text" id="password" class="fadeIn fifth" name="pwd" required [(ngModel)]="password1"
+            placeholder="Use a strong password">
+          <br>
+          <h2>Confirm Password</h2>
+          <input type="text" id="mobileNum" class="fadeIn fifth" name="pwd" required [(ngModel)]="password2"
+            placeholder="Re-enter password">
           <br>
           <input type="submit" class="fadeIn sixth" value="Sign Up" (click)="signup()">
-        </form>
-    
-        <!-- Remind Password -->
-        <div id="formFooter">
-          <a class="underlineHover" (click)="login()">Already have an account?</a>
         </div>
+        <div *ngIf="alive">
+          <h2 class="fadeIn first">Please Enter Email Confirmation Code</h2>
+          <input type="text" id="code" class="fadeIn second" name="code" required [(ngModel)]="code">
+          <input type="submit" class="fadeIn third" value="confirm" (click)="confirmation()">
+
+        </div>
+
+      </form>
+
+      <!-- Remind Password -->
+      <div id="formFooter">
+        <a class="underlineHover" (click)="login()">Already have an account?</a>
       </div>
     </div>
+  </div>
 
 </ion-content>

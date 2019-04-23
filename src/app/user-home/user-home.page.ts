@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-user-home',
@@ -7,18 +8,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./user-home.page.scss'],
 })
 export class UserHomePage implements OnInit {
-  user:any;
   name: string;
-  
-  constructor(private acr:ActivatedRoute, private router:Router) {
-    this.user = this.acr.snapshot.paramMap.get('id');
-    this.name = this.user.name;
-   }
+
+  constructor(public session: SessionService, private acr: ActivatedRoute, private router: Router) {
+    this.name = this.session.user.attributes.name;
+  }
 
   ngOnInit() {
   }
-  points(){
-    this.router.navigate(['points',this.user])
+  points() {
+    this.router.navigate(['points']);
   }
 
 }

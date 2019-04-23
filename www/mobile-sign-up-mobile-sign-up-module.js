@@ -58,7 +58,7 @@ var MobileSignUpPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header >\n    <ion-toolbar text-center color=\"dark\">\n      <h3> <ion-icon name=\"water\" color=\"danger\" size= \"medium\"></ion-icon> Blood Donation</h3>\n    </ion-toolbar>\n  </ion-header>\n<ion-content>\n    <div class=\"wrapper fadeInDown\">\n      <div id=\"formContent\">\n        <!-- Tabs Titles -->\n        <h2 class=\"active\"> Sign Up </h2>\n        <!-- <h2 class=\"inactive underlineHover\">Sign Up </h2> -->\n    \n        <!-- Icon -->\n        <div class=\"fadeIn first\">\n          <ion-icon name=\"contact\" color=\"danger\" size=\"large\"></ion-icon>\n        </div>\n    \n        <!-- Sign-up Form -->\n        <form>\n          <h2>Emirates ID</h2>\n          <input type=\"text\" id=\"emiratesId\" class=\"fadeIn second\" name=\"eID\" required [(ngModel)]=\"emiratesId\" placeholder=\"xxx-xxxx-xxxxxxx-x\">\n          <h2>Mobile Number</h2>\n          <input type=\"text\" id=\"mobileNum\" class=\"fadeIn third\" name=\"pNo\" required [(ngModel)]=\"mobileNo\" placeholder=\"+971-5X-XXXXXXX\">\n          <h2>Email</h2>\n          <input type=\"text\" id=\"mobileNum\" class=\"fadeIn fourth\" name=\"email\" required [(ngModel)]=\"mobileNo\" placeholder=\"+971-5X-XXXXXXX\">\n          <h2>Password</h2>\n          <input type=\"text\" id=\"mobileNum\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"mobileNo\" placeholder=\"+971-5X-XXXXXXX\">\n          <br>\n          <input type=\"submit\" class=\"fadeIn sixth\" value=\"Sign Up\" (click)=\"signup()\">\n        </form>\n    \n        <!-- Remind Password -->\n        <div id=\"formFooter\">\n          <a class=\"underlineHover\" (click)=\"login()\">Already have an account?</a>\n        </div>\n      </div>\n    </div>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar text-center color=\"dark\">\n    <h3>\n      <ion-icon name=\"water\" color=\"danger\" size=\"medium\"></ion-icon> Blood Donation\n    </h3>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <!-- Tabs Titles -->\n      <h2 class=\"active\"> Sign Up </h2>\n      <!-- <h2 class=\"inactive underlineHover\">Sign Up </h2> -->\n\n      <!-- Icon -->\n      <div class=\"fadeIn first\">\n        <ion-icon name=\"contact\" color=\"danger\" size=\"large\"></ion-icon>\n      </div>\n\n      <!-- Sign-up Form -->\n      <form>\n        <div *ngIf=\"!alive\">\n          <h2>Emirates ID</h2>\n          <input type=\"text\" id=\"emiratesId\" class=\"fadeIn second\" name=\"eID\" required [(ngModel)]=\"emiratesId\"\n            placeholder=\"xxx-xxxx-xxxxxxx-x\">\n          <h2>Name</h2>\n          <input type=\"text\" id=\"name\" class=\"fadeIn third\" name=\"pNo\" required [(ngModel)]=\"name\"\n            placeholder=\"+971-5X-XXXXXXX\">\n          <h2>Email</h2>\n          <input type=\"text\" id=\"email\" class=\"fadeIn fourth\" name=\"email\" required [(ngModel)]=\"email\"\n            placeholder=\"example@example.com\">\n          <h2>Password</h2>\n          <input type=\"text\" id=\"password\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"password1\"\n            placeholder=\"Use a strong password\">\n          <br>\n          <h2>Confirm Password</h2>\n          <input type=\"text\" id=\"mobileNum\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"password2\"\n            placeholder=\"Re-enter password\">\n          <br>\n          <input type=\"submit\" class=\"fadeIn sixth\" value=\"Sign Up\" (click)=\"signup()\">\n        </div>\n        <div *ngIf=\"alive\">\n          <h2 class=\"fadeIn first\">Please Enter Email Confirmation Code</h2>\n          <input type=\"text\" id=\"code\" class=\"fadeIn second\" name=\"code\" required [(ngModel)]=\"code\">\n          <input type=\"submit\" class=\"fadeIn third\" value=\"confirm\" (click)=\"confirmation()\">\n\n        </div>\n\n      </form>\n\n      <!-- Remind Password -->\n      <div id=\"formFooter\">\n        <a class=\"underlineHover\" (click)=\"login()\">Already have an account?</a>\n      </div>\n    </div>\n  </div>\n\n</ion-content>"
 
 /***/ }),
 
@@ -86,19 +86,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
+/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
 
 
 
+
+
+
+
+aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var MobileSignUpPage = /** @class */ (function () {
-    function MobileSignUpPage(router) {
+    function MobileSignUpPage(router, alertController) {
         this.router = router;
+        this.alertController = alertController;
+        this.alive = false;
     }
     MobileSignUpPage.prototype.ngOnInit = function () {
     };
+    MobileSignUpPage.prototype.presentAlert = function (data) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Error',
+                            message: data,
+                            buttons: ['OK']
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        alert.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     MobileSignUpPage.prototype.signup = function () {
-        console.log("Reached signup func");
-        console.log(this.emiratesId, this.mobileNo);
-        // this.router.navigate(['userhome'])
+        var _this = this;
+        if (this.password1 != this.password2) {
+            this.presentAlert('Passwords dont match!');
+        }
+        else {
+            aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].signUp({
+                username: this.emiratesId.toString(),
+                password: this.password2,
+                attributes: {
+                    email: this.email,
+                    name: this.name
+                },
+            })
+                .then(function (data) { return console.log(data); })
+                .catch(function (err) { return console.log(err, _this.presentAlert(err)); });
+            console.log(this.emiratesId);
+            this.alive = !this.alive;
+        }
+    };
+    MobileSignUpPage.prototype.confirmation = function () {
+        var _this = this;
+        aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].confirmSignUp(this.emiratesId.toString(), this.code, {
+            // Optional. Force user confirmation irrespective of existing alias. By default set to True.
+            forceAliasCreation: true
+        }).then(function (data) {
+            if (data) {
+                _this.login();
+            }
+        })
+            .catch(function (err) { return console.log(err); });
     };
     MobileSignUpPage.prototype.login = function () {
         this.router.navigate(['mobile-log-in']);
@@ -109,7 +165,7 @@ var MobileSignUpPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./mobile-sign-up.page.html */ "./src/app/mobile-sign-up/mobile-sign-up.page.html"),
             styles: [__webpack_require__(/*! ./mobile-sign-up.page.scss */ "./src/app/mobile-sign-up/mobile-sign-up.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
     ], MobileSignUpPage);
     return MobileSignUpPage;
 }());

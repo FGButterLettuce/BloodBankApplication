@@ -93,7 +93,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
 /* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
 
 
 
@@ -101,9 +102,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var LogInPage = /** @class */ (function () {
-    function LogInPage(router, alertController) {
+    function LogInPage(session, router, alertController) {
+        this.session = session;
         this.router = router;
         this.alertController = alertController;
     }
@@ -134,12 +137,18 @@ var LogInPage = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].signIn(this.emiratesId.toString(), this.password)];
+                        return [4 /*yield*/, aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].signIn(this.emiratesId.toString(), this.password)
+                            //session add user
+                            // console.log(user.attributes.name);
+                            // console.log(JSON.stringify(user));
+                        ];
                     case 1:
                         user = _a.sent();
-                        console.log(user.challengeName);
-                        //add authenticate function 
-                        this.router.navigate(['user-home', user]);
+                        //session add user
+                        // console.log(user.attributes.name);
+                        // console.log(JSON.stringify(user));
+                        this.session.user = user;
+                        this.router.navigate(['user-home']);
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
@@ -181,7 +190,7 @@ var LogInPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./log-in.page.html */ "./src/app/log-in/log-in.page.html"),
             styles: [__webpack_require__(/*! ./log-in.page.scss */ "./src/app/log-in/log-in.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_5__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
     ], LogInPage);
     return LogInPage;
 }());

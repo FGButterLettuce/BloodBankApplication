@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
+import { SessionService } from './services/session/session.service';
+
 
 import { CountUpModule } from 'countup.js-angular2';
 import * as moment from 'moment';
@@ -23,6 +25,7 @@ import * as moment from 'moment';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule, AmplifyAngularModule],
   providers: [
     StatusBar,
+    SessionService,
     AmplifyService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

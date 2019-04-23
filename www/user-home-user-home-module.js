@@ -61,7 +61,7 @@ var UserHomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\n\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <!-- Tabs Titles -->\n      <h2 class=\"active\"> Welcome &nbsp;{{eID}} </h2>\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div class=\"fadeIn first\">\n              <h1>POINTS</h1>\n              <h1 [countUp]=\"1500\">0</h1>\n            </div>\n          </ion-col>\n          <!-- Icon -->\n          <ion-col>\n\n\n            <div text-center>\n              <ion-button shape=\"round\" expand=\"block\" color=\"danger\" size=\"large\" (click)=\"points()\">\n                <ion-icon name=\"filing\"></ion-icon>&nbsp;View Point History\n              </ion-button>\n              <br>\n              <ion-button shape=\"round\" expand=\"block\" color=\"danger\" size=\"large\" (click)=\"schedule()\">\n                <ion-icon name=\"water\"></ion-icon>&nbsp;Schedule Donation\n              </ion-button>\n              <br>\n              <ion-button shape=\"round\" expand=\"block\" color=\"danger\" size=\"large\">\n                <ion-icon name=\"calendar\"></ion-icon>&nbsp;View Event Calendar\n              </ion-button>\n            </div>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n    </div>\n  </div>\n\n\n</ion-content>"
+module.exports = "<ion-content>\n\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <!-- Tabs Titles -->\n      <h2 class=\"active\"> Welcome &nbsp;{{name}} </h2>\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div class=\"fadeIn first\">\n              <h1>POINTS</h1>\n              <h1 [countUp]=\"1500\">0</h1>\n            </div>\n          </ion-col>\n          <!-- Icon -->\n          <ion-col>\n\n\n            <div text-center>\n              <ion-button shape=\"round\" expand=\"block\" color=\"danger\" size=\"large\" (click)=\"points()\">\n                <ion-icon name=\"filing\"></ion-icon>&nbsp;View Point History\n              </ion-button>\n              <br>\n              <ion-button shape=\"round\" expand=\"block\" color=\"danger\" size=\"large\" (click)=\"schedule()\">\n                <ion-icon name=\"water\"></ion-icon>&nbsp;Schedule Donation\n              </ion-button>\n              <br>\n              <ion-button shape=\"round\" expand=\"block\" color=\"danger\" size=\"large\">\n                <ion-icon name=\"calendar\"></ion-icon>&nbsp;View Event Calendar\n              </ion-button>\n            </div>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n    </div>\n  </div>\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -89,20 +89,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+
 
 
 
 var UserHomePage = /** @class */ (function () {
-    function UserHomePage(acr, router) {
+    function UserHomePage(session, acr, router) {
+        this.session = session;
         this.acr = acr;
         this.router = router;
-        this.user = this.acr.snapshot.paramMap.get('id');
-        this.name = this.user.name;
+        this.name = this.session.user.attributes.name;
     }
     UserHomePage.prototype.ngOnInit = function () {
     };
     UserHomePage.prototype.points = function () {
-        this.router.navigate(['points', this.user]);
+        this.router.navigate(['points']);
     };
     UserHomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -110,7 +112,7 @@ var UserHomePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./user-home.page.html */ "./src/app/user-home/user-home.page.html"),
             styles: [__webpack_require__(/*! ./user-home.page.scss */ "./src/app/user-home/user-home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_3__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], UserHomePage);
     return UserHomePage;
 }());

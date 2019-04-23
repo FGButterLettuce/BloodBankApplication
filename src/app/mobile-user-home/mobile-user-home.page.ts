@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-mobile-user-home',
@@ -7,19 +8,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./mobile-user-home.page.scss'],
 })
 export class MobileUserHomePage implements OnInit {
-  eID: string;
-  constructor(private acr:ActivatedRoute, private router:Router) { }
+  name: string;
 
+  constructor(public session: SessionService, private acr: ActivatedRoute, private router: Router) {
+    this.name = this.session.user.attributes.name;
+  }
   ngOnInit() {
-    this.eID = this.acr.snapshot.paramMap.get('id');
   }
 
-  points(){
-    this.router.navigate(['mobile-points',this.eID]);
-  }
-  schedule(){
-    this.router.navigate(['schedule',this.eID]);
-  }
+  // points(){
+  //   this.router.navigate(['mobile-points']);
+  // }
+  // schedule(){
+  //   this.router.navigate(['schedule']);
+  // }
   getPoints(){
     //getpoints from object
   }

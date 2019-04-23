@@ -13,9 +13,7 @@ const awsmobile = {
             "tableName": "donor-ionic",
             "region": "eu-west-1"
         }
-    ],
-    "aws_mobile_analytics_app_id": "61d041b9c48940f097f943d1697813c0",
-    "aws_mobile_analytics_app_region": "eu-west-1"
+    ]
 };
 
 

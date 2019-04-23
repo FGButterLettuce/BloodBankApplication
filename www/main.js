@@ -843,7 +843,7 @@ var map = {
 	],
 	"./log-in/log-in.module": [
 		"./src/app/log-in/log-in.module.ts",
-		"default~log-in-log-in-module~sign-up-sign-up-module",
+		"default~log-in-log-in-module~mobile-log-in-mobile-log-in-module~mobile-sign-up-mobile-sign-up-module~fe47ca53",
 		"common",
 		"log-in-log-in-module"
 	],
@@ -853,10 +853,14 @@ var map = {
 	],
 	"./mobile-log-in/mobile-log-in.module": [
 		"./src/app/mobile-log-in/mobile-log-in.module.ts",
+		"default~log-in-log-in-module~mobile-log-in-mobile-log-in-module~mobile-sign-up-mobile-sign-up-module~fe47ca53",
+		"common",
 		"mobile-log-in-mobile-log-in-module"
 	],
 	"./mobile-sign-up/mobile-sign-up.module": [
 		"./src/app/mobile-sign-up/mobile-sign-up.module.ts",
+		"default~log-in-log-in-module~mobile-log-in-mobile-log-in-module~mobile-sign-up-mobile-sign-up-module~fe47ca53",
+		"common",
 		"mobile-sign-up-mobile-sign-up-module"
 	],
 	"./mobile-user-home/mobile-user-home.module": [
@@ -865,7 +869,7 @@ var map = {
 	],
 	"./sign-up/sign-up.module": [
 		"./src/app/sign-up/sign-up.module.ts",
-		"default~log-in-log-in-module~sign-up-sign-up-module",
+		"default~log-in-log-in-module~mobile-log-in-mobile-log-in-module~mobile-sign-up-mobile-sign-up-module~fe47ca53",
 		"common",
 		"sign-up-sign-up-module"
 	],
@@ -925,8 +929,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_auth_authguard_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/auth/authguard.service */ "./src/app/services/auth/authguard.service.ts");
-
 
 
 
@@ -938,11 +940,11 @@ var routes = [
     { path: 'mobile-sign-up', loadChildren: './mobile-sign-up/mobile-sign-up.module#MobileSignUpPageModule' },
     { path: 'log-in', loadChildren: './log-in/log-in.module#LogInPageModule' },
     { path: 'mobile-log-in', loadChildren: './mobile-log-in/mobile-log-in.module#MobileLogInPageModule' },
-    { path: 'user-home/:id', loadChildren: './user-home/user-home.module#UserHomePageModule', canActivate: [_services_auth_authguard_service__WEBPACK_IMPORTED_MODULE_3__["AuthguardService"]] },
-    { path: 'mobile-user-home/:id', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
-    { path: 'points/:id', loadChildren: './user/points/points.module#PointsPageModule' },
+    { path: 'user-home', loadChildren: './user-home/user-home.module#UserHomePageModule' },
+    { path: 'mobile-user-home', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
+    { path: 'points', loadChildren: './user/points/points.module#PointsPageModule' },
     { path: 'schedule', loadChildren: './user/schedule/schedule.module#SchedulePageModule' },
-    { path: 'mobile-points/:id', loadChildren: './user/mobile-points/mobile-points.module#MobilePointsPageModule' },
+    { path: 'mobile-points', loadChildren: './user/mobile-points/mobile-points.module#MobilePointsPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1053,7 +1055,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
-/* harmony import */ var countup_js_angular2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! countup.js-angular2 */ "./node_modules/countup.js-angular2/fesm5/countup.js-angular2.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/session/session.service */ "./src/app/services/session/session.service.ts");
+/* harmony import */ var countup_js_angular2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! countup.js-angular2 */ "./node_modules/countup.js-angular2/fesm5/countup.js-angular2.js");
+
 
 
 
@@ -1072,9 +1076,10 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
             entryComponents: [],
-            imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], countup_js_angular2__WEBPACK_IMPORTED_MODULE_10__["CountUpModule"], aws_amplify_angular__WEBPACK_IMPORTED_MODULE_9__["AmplifyAngularModule"]],
+            imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], countup_js_angular2__WEBPACK_IMPORTED_MODULE_11__["CountUpModule"], aws_amplify_angular__WEBPACK_IMPORTED_MODULE_9__["AmplifyAngularModule"]],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
+                _services_session_session_service__WEBPACK_IMPORTED_MODULE_10__["SessionService"],
                 aws_amplify_angular__WEBPACK_IMPORTED_MODULE_9__["AmplifyService"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
@@ -1089,52 +1094,30 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/services/auth/authguard.service.ts":
-/*!****************************************************!*\
-  !*** ./src/app/services/auth/authguard.service.ts ***!
-  \****************************************************/
-/*! exports provided: AuthguardService */
+/***/ "./src/app/services/session/session.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/services/session/session.service.ts ***!
+  \*****************************************************/
+/*! exports provided: SessionService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthguardService", function() { return AuthguardService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SessionService", function() { return SessionService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 
 
-
-
-var AuthguardService = /** @class */ (function () {
-    function AuthguardService(router, events) {
-        var _this = this;
-        this.router = router;
-        this.events = events;
-        this.signedIn = false;
-        this.events.subscribe('data:AuthState', function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                if (data.loggedIn) {
-                    this.signedIn = true;
-                }
-                else {
-                    this.signedIn = false;
-                }
-                return [2 /*return*/];
-            });
-        }); });
+var SessionService = /** @class */ (function () {
+    function SessionService() {
     }
-    AuthguardService.prototype.canActivate = function () {
-        return this.signedIn;
-    };
-    AuthguardService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    SessionService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"]])
-    ], AuthguardService);
-    return AuthguardService;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], SessionService);
+    return SessionService;
 }());
 
 

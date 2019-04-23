@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { AlertController } from '@ionic/angular';
+import { SessionService } from '../services/session/session.service';
 
 
 import Amplify from 'aws-amplify';
@@ -18,7 +19,7 @@ export class LogInPage implements OnInit {
   emiratesId: string;
   password: string;
 
-  constructor(private router: Router, public alertController: AlertController) { }
+  constructor(public session: SessionService,private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -36,9 +37,11 @@ export class LogInPage implements OnInit {
   async login() {
     try {
       const user = await Auth.signIn(this.emiratesId.toString(), this.password)
-      console.log(user.challengeName);
-      //add authenticate function 
-      this.router.navigate(['user-home', user]);
+      //session add user
+      // console.log(user.attributes.name);
+      // console.log(JSON.stringify(user));
+      this.session.user = user;
+      this.router.navigate(['user-home']);
     }
     catch (err) {
       if (err.code === 'UserNotConfirmedException') {

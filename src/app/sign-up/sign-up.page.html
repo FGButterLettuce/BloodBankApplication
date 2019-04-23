@@ -12,7 +12,7 @@
 
       <!-- Login Form -->
       <form>
-        <div *ngIf = "!alive">
+        <div *ngIf="!alive">
           <h2>Emirates ID</h2>
           <input type="text" id="emiratesId" class="fadeIn second" name="eID" required [(ngModel)]="emiratesId"
             placeholder="xxx-xxxx-xxxxxxx-x">
@@ -32,10 +32,10 @@
           <br>
           <input type="submit" class="fadeIn sixth" value="Sign Up" (click)="signup()">
         </div>
-        <div *ngIf = "alive">
-            <h2 class="fadeIn first">Please Enter Email Confirmation Code</h2>
-            <input type="text" id="code" class="fadeIn second" name="code" required [(ngModel)]="code">
-            <input type="submit" class="fadeIn third" value="confirm" (click)="confirmation()">
+        <div *ngIf="alive">
+          <h2 class="fadeIn first">Check Email For Confirmation Code</h2>
+          <input type="text" id="code" class="fadeIn second" name="code" required [(ngModel)]="code">
+          <input type="submit" class="fadeIn third" value="confirm" (click)="confirmation()">
 
         </div>
 

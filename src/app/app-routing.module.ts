@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthguardService } from './services/auth/authguard.service';
 
 
 const routes: Routes = [
@@ -11,11 +10,11 @@ const routes: Routes = [
   { path: 'mobile-sign-up', loadChildren: './mobile-sign-up/mobile-sign-up.module#MobileSignUpPageModule' },
   { path: 'log-in', loadChildren: './log-in/log-in.module#LogInPageModule' },
   { path: 'mobile-log-in', loadChildren: './mobile-log-in/mobile-log-in.module#MobileLogInPageModule' },
-  { path: 'user-home/:id', loadChildren: './user-home/user-home.module#UserHomePageModule', canActivate: [AuthguardService] },
-  { path: 'mobile-user-home/:id', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
-  { path: 'points/:id', loadChildren: './user/points/points.module#PointsPageModule' },
+  { path: 'user-home', loadChildren: './user-home/user-home.module#UserHomePageModule'},
+  { path: 'mobile-user-home', loadChildren: './mobile-user-home/mobile-user-home.module#MobileUserHomePageModule' },
+  { path: 'points', loadChildren: './user/points/points.module#PointsPageModule' },
   { path: 'schedule', loadChildren: './user/schedule/schedule.module#SchedulePageModule' },
-  { path: 'mobile-points/:id', loadChildren: './user/mobile-points/mobile-points.module#MobilePointsPageModule' },
+  { path: 'mobile-points', loadChildren: './user/mobile-points/mobile-points.module#MobilePointsPageModule' },
 ];
 
 @NgModule({

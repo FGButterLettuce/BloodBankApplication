@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~log-in-log-in-module~sign-up-sign-up-module"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~log-in-log-in-module~mobile-log-in-mobile-log-in-module~mobile-sign-up-mobile-sign-up-module~fe47ca53"],{
 
 /***/ "./node_modules/@aws-amplify/analytics/lib/Analytics.js":
 /*!**************************************************************!*\
@@ -42896,9 +42896,7 @@ var awsmobile = {
             "tableName": "donor-ionic",
             "region": "eu-west-1"
         }
-    ],
-    "aws_mobile_analytics_app_id": "61d041b9c48940f097f943d1697813c0",
-    "aws_mobile_analytics_app_region": "eu-west-1"
+    ]
 };
 /* harmony default export */ __webpack_exports__["default"] = (awsmobile);
 //# sourceMappingURL=aws-exports.js.map
@@ -42906,4 +42904,4 @@ var awsmobile = {
 /***/ })
 
 }]);
-//# sourceMappingURL=default~log-in-log-in-module~sign-up-sign-up-module.js.map
+//# sourceMappingURL=default~log-in-log-in-module~mobile-log-in-mobile-log-in-module~mobile-sign-up-mobile-sign-up-module~fe47ca53.js.map
