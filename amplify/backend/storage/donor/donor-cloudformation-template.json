@@ -33,15 +33,15 @@
                 "AttributeDefinitions": [
                   
                   {
-                      "AttributeName": "eID",
-                      "AttributeType": "N"
+                      "AttributeName": "eid",
+                      "AttributeType": "S"
                   } 
                   
                 ],
                 "KeySchema": [
                   
                   {
-                    "AttributeName": "eID",
+                    "AttributeName": "eid",
                     "KeyType": "HASH"
                   } 
                   

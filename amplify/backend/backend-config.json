@@ -6,26 +6,21 @@
 		}
 	},
 	"storage": {
-		"bloodbankcli": {
+		"donor": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"analytics": {
-		"bloodbankapplication": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	},
+	"analytics": {},
 	"function": {
-		"bloodbankapplicationaff4d36e": {
+		"donorlam": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
 			"dependsOn": [
 				{
 					"category": "storage",
-					"resourceName": "bloodbankcli",
+					"resourceName": "donor",
 					"attributes": [
 						"Name",
 						"Arn"
@@ -34,5 +29,20 @@
 			]
 		}
 	},
-	"api": {}
+	"api": {
+		"donorapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "donorlam",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	}
 }

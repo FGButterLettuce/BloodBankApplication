@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
-import { AlertController } from '@ionic/angular';
+import { AlertController,Events } from '@ionic/angular';
+import { AmplifyService } from 'aws-amplify-angular'
+
 
 import Amplify from 'aws-amplify';
 import amplify from 'src/aws-exports.js';
@@ -21,13 +23,18 @@ export class SignUpPage implements OnInit {
   email: string;
   password1: string;
   password2: string;
-
   alive: boolean = false;
-
-
   code: string;
 
-  constructor(private router: Router, public alertController: AlertController) { }
+
+  amplifyService: AmplifyService;
+
+  user:any;
+
+
+  constructor(private events: Events, private amplify: AmplifyService,private router: Router, public alertController: AlertController) { 
+  this.amplifyService = amplify
+  }
 
   ngOnInit() {
   }
@@ -70,10 +77,10 @@ export class SignUpPage implements OnInit {
 
   confirmation() {
     Auth.confirmSignUp(this.emiratesId.toString(), this.code, {
-      // Optional. Force user confirmation irrespective of existing alias. By default set to True.
       forceAliasCreation: true
     }).then(data => {
         if(data){
+          this.adduser();
           this.login()
         }
     })
@@ -82,5 +89,18 @@ export class SignUpPage implements OnInit {
 
   login() {
     this.router.navigate(['log-in']);
+  }
+  
+  adduser(){
+
+    let usr = [{
+      eid: this.emiratesId,
+      name: this.name,
+      email: this.email,
+    }]
+    this.amplifyService.api().post('donorapi', '/donor-ionic', {body: usr})
+    .catch((err) => {
+      console.log(`Error saving list: ${err}`)
+    })
   }
 }

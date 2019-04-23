@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
+import { AmplifyService } from 'aws-amplify-angular'
+
 import { AlertController } from '@ionic/angular';
 
 import Amplify from 'aws-amplify';
@@ -25,7 +27,7 @@ export class MobileSignUpPage implements OnInit {
 
   code: string;
 
-  constructor(private router: Router, public alertController: AlertController) { }
+  constructor(private amplifyService: AmplifyService,private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -68,6 +70,7 @@ export class MobileSignUpPage implements OnInit {
       forceAliasCreation: true
     }).then(data => {
         if(data){
+          this.adduser();
           this.login()
         }
     })
@@ -76,5 +79,18 @@ export class MobileSignUpPage implements OnInit {
 
   login(){
     this.router.navigate(['mobile-log-in']);
+  }
+
+
+  adduser(){
+    let usr = [{
+      eid: this.emiratesId,
+      name: this.name,
+      email: this.email
+    }]
+    this.amplifyService.api().post('donorapi', '/donor', {body: usr})
+    .catch((err) => {
+      console.log(`Error saving list: ${err}`)
+    })
   }
 }
