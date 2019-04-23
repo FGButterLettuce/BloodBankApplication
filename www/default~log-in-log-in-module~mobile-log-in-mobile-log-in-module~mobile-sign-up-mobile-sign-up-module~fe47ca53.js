@@ -42900,7 +42900,7 @@ var awsmobile = {
     "aws_cloud_logic_custom": [
         {
             "name": "donorapi",
-            "endpoint": "https://qvhqwlw0ok.execute-api.eu-west-1.amazonaws.com/ionic",
+            "endpoint": "https://wbdbx4iqnk.execute-api.eu-west-1.amazonaws.com/ionic",
             "region": "eu-west-1"
         }
     ]
