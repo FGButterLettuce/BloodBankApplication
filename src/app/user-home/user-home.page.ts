@@ -15,17 +15,6 @@ export class UserHomePage implements OnInit {
 
   constructor(public session: SessionService, private acr: ActivatedRoute, private router: Router, private amplifyService: AmplifyService, private events: Events) {
     this.name = this.session.user.attributes.name;
-
-    let usr = [{
-      eid: this.session.user.attributes.username,
-      name: this.session.user.attributes.name,
-      email: this.session.user.attributes.email,
-    }]
-    console.log(usr);
-    this.amplifyService.api().post('donorapi', '/donor-ionic', {body: usr})
-    .catch((err) => {
-      console.log(`Error saving list: ${err}`)
-    })
   }
 
   ngOnInit() {

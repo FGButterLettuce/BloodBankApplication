@@ -106,16 +106,6 @@ var UserHomePage = /** @class */ (function () {
         this.amplifyService = amplifyService;
         this.events = events;
         this.name = this.session.user.attributes.name;
-        var usr = [{
-                eid: this.session.user.attributes.username,
-                name: this.session.user.attributes.name,
-                email: this.session.user.attributes.email,
-            }];
-        console.log(usr);
-        this.amplifyService.api().post('donorapi', '/donor-ionic', { body: usr })
-            .catch(function (err) {
-            console.log("Error saving list: " + err);
-        });
     }
     UserHomePage.prototype.ngOnInit = function () {
     };

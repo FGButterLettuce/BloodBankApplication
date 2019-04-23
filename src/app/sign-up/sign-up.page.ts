@@ -92,11 +92,12 @@ export class SignUpPage implements OnInit {
   }
   
   adduser(){
+    this.amplifyService.auth().signIn(this.emiratesId.toString(), this.password2);
     let usr = [{
       eid: this.emiratesId,
       name: this.name,
       email: this.email,
-    }]
+    }];
     this.amplifyService.api().post('donorapi', '/donor-ionic', {body: usr})
     .catch((err) => {
       console.log(`Error saving list: ${err}`)
