@@ -158,7 +158,7 @@ var SignUpPage = /** @class */ (function () {
             forceAliasCreation: true
         }).then(function (data) {
             if (data) {
-                // this.adduser();
+                _this.adduser();
                 _this.login();
             }
         })
@@ -173,7 +173,7 @@ var SignUpPage = /** @class */ (function () {
                 name: this.name,
                 email: this.email,
             }];
-        this.amplifyService.api().post('donorapi', '/donor-ionic', { body: usr })
+        this.amplifyService.api().post('donorapi', '/donor', { body: usr })
             .catch(function (err) {
             console.log("Error saving list: " + err);
         });

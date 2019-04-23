@@ -80,7 +80,7 @@ export class SignUpPage implements OnInit {
       forceAliasCreation: true
     }).then(data => {
         if(data){
-          // this.adduser();
+          this.adduser();
           this.login()
         }
     })
@@ -92,13 +92,12 @@ export class SignUpPage implements OnInit {
   }
   
   adduser(){
-
     let usr = [{
       eid: this.emiratesId,
       name: this.name,
       email: this.email,
     }]
-    this.amplifyService.api().post('donorapi', '/donor-ionic', {body: usr})
+    this.amplifyService.api().post('donorapi', '/donor', {body: usr})
     .catch((err) => {
       console.log(`Error saving list: ${err}`)
     })
