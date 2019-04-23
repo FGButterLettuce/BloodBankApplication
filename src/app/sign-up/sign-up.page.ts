@@ -97,7 +97,7 @@ export class SignUpPage implements OnInit {
       name: this.name,
       email: this.email,
     }]
-    this.amplifyService.api().post('donorapi', '/donor', {body: usr})
+    this.amplifyService.api().post('donorapi', '/donor-ionic', {body: usr})
     .catch((err) => {
       console.log(`Error saving list: ${err}`)
     })
