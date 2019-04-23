@@ -80,7 +80,7 @@ export class SignUpPage implements OnInit {
       forceAliasCreation: true
     }).then(data => {
         if(data){
-          this.adduser();
+          // this.adduser();
           this.login()
         }
     })

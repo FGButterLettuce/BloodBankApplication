@@ -42896,6 +42896,13 @@ var awsmobile = {
             "tableName": "donor-ionic",
             "region": "eu-west-1"
         }
+    ],
+    "aws_cloud_logic_custom": [
+        {
+            "name": "donorapi",
+            "endpoint": "https://qvhqwlw0ok.execute-api.eu-west-1.amazonaws.com/ionic",
+            "region": "eu-west-1"
+        }
     ]
 };
 /* harmony default export */ __webpack_exports__["default"] = (awsmobile);

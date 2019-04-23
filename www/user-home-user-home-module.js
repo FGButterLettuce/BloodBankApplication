@@ -90,16 +90,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
 
 
 
 
 var UserHomePage = /** @class */ (function () {
-    function UserHomePage(session, acr, router) {
+    function UserHomePage(session, acr, router, amplifyService, events) {
         this.session = session;
         this.acr = acr;
         this.router = router;
+        this.amplifyService = amplifyService;
+        this.events = events;
         this.name = this.session.user.attributes.name;
+        var usr = [{
+                eid: this.session.user.attributes.username,
+                name: this.session.user.attributes.name,
+                email: this.session.user.attributes.email,
+            }];
+        console.log(usr);
+        this.amplifyService.api().post('donorapi', '/donor-ionic', { body: usr })
+            .catch(function (err) {
+            console.log("Error saving list: " + err);
+        });
     }
     UserHomePage.prototype.ngOnInit = function () {
     };
@@ -112,7 +128,7 @@ var UserHomePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./user-home.page.html */ "./src/app/user-home/user-home.page.html"),
             styles: [__webpack_require__(/*! ./user-home.page.scss */ "./src/app/user-home/user-home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_3__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_3__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], aws_amplify_angular__WEBPACK_IMPORTED_MODULE_4__["AmplifyService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["Events"]])
     ], UserHomePage);
     return UserHomePage;
 }());

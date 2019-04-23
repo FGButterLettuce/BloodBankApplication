@@ -92,7 +92,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
 /* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
+/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
+/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
 
 
 
@@ -100,12 +101,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var SignUpPage = /** @class */ (function () {
-    function SignUpPage(router, alertController) {
+    function SignUpPage(events, amplify, router, alertController) {
+        this.events = events;
+        this.amplify = amplify;
         this.router = router;
         this.alertController = alertController;
         this.alive = false;
+        this.amplifyService = amplify;
     }
     SignUpPage.prototype.ngOnInit = function () {
     };
@@ -150,10 +155,10 @@ var SignUpPage = /** @class */ (function () {
     SignUpPage.prototype.confirmation = function () {
         var _this = this;
         aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].confirmSignUp(this.emiratesId.toString(), this.code, {
-            // Optional. Force user confirmation irrespective of existing alias. By default set to True.
             forceAliasCreation: true
         }).then(function (data) {
             if (data) {
+                // this.adduser();
                 _this.login();
             }
         })
@@ -162,13 +167,24 @@ var SignUpPage = /** @class */ (function () {
     SignUpPage.prototype.login = function () {
         this.router.navigate(['log-in']);
     };
+    SignUpPage.prototype.adduser = function () {
+        var usr = [{
+                eid: this.emiratesId,
+                name: this.name,
+                email: this.email,
+            }];
+        this.amplifyService.api().post('donorapi', '/donor-ionic', { body: usr })
+            .catch(function (err) {
+            console.log("Error saving list: " + err);
+        });
+    };
     SignUpPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-sign-up',
             template: __webpack_require__(/*! ./sign-up.page.html */ "./src/app/sign-up/sign-up.page.html"),
             styles: [__webpack_require__(/*! ./sign-up.page.scss */ "./src/app/sign-up/sign-up.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Events"], aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__["AmplifyService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
     ], SignUpPage);
     return SignUpPage;
 }());

@@ -88,8 +88,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
 /* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
+/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
 
 
 
@@ -97,9 +98,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var MobileSignUpPage = /** @class */ (function () {
-    function MobileSignUpPage(router, alertController) {
+    function MobileSignUpPage(amplifyService, router, alertController) {
+        this.amplifyService = amplifyService;
         this.router = router;
         this.alertController = alertController;
         this.alive = false;
@@ -151,6 +154,7 @@ var MobileSignUpPage = /** @class */ (function () {
             forceAliasCreation: true
         }).then(function (data) {
             if (data) {
+                _this.adduser();
                 _this.login();
             }
         })
@@ -159,13 +163,24 @@ var MobileSignUpPage = /** @class */ (function () {
     MobileSignUpPage.prototype.login = function () {
         this.router.navigate(['mobile-log-in']);
     };
+    MobileSignUpPage.prototype.adduser = function () {
+        var usr = [{
+                eid: this.emiratesId,
+                name: this.name,
+                email: this.email
+            }];
+        this.amplifyService.api().post('donorapi', '/donor', { body: usr })
+            .catch(function (err) {
+            console.log("Error saving list: " + err);
+        });
+    };
     MobileSignUpPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-mobile-sign-up',
             template: __webpack_require__(/*! ./mobile-sign-up.page.html */ "./src/app/mobile-sign-up/mobile-sign-up.page.html"),
             styles: [__webpack_require__(/*! ./mobile-sign-up.page.scss */ "./src/app/mobile-sign-up/mobile-sign-up.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [aws_amplify_angular__WEBPACK_IMPORTED_MODULE_4__["AmplifyService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"]])
     ], MobileSignUpPage);
     return MobileSignUpPage;
 }());
