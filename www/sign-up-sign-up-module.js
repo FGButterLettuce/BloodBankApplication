@@ -89,28 +89,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
-/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
 
 
 
 
 
-
-
-
-aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var SignUpPage = /** @class */ (function () {
-    function SignUpPage(events, amplify, router, alertController) {
-        this.events = events;
+    function SignUpPage(amplify, router, alertController) {
         this.amplify = amplify;
         this.router = router;
         this.alertController = alertController;
         this.alive = false;
-        this.amplifyService = amplify;
     }
     SignUpPage.prototype.ngOnInit = function () {
     };
@@ -138,7 +129,7 @@ var SignUpPage = /** @class */ (function () {
             this.presentAlert('Passwords dont match!');
         }
         else {
-            aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].signUp({
+            this.amplify.auth().signUp({
                 username: this.emiratesId.toString(),
                 password: this.password2,
                 attributes: {
@@ -146,18 +137,20 @@ var SignUpPage = /** @class */ (function () {
                     name: this.name
                 },
             })
-                .then(function (data) { return console.log(data); })
+                .then(function (data) {
+                return _this.alive = !_this.alive;
+            })
                 .catch(function (err) { return console.log(err, _this.presentAlert(err)); });
             console.log(this.emiratesId);
-            this.alive = !this.alive;
         }
     };
     SignUpPage.prototype.confirmation = function () {
         var _this = this;
-        aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].confirmSignUp(this.emiratesId.toString(), this.code, {
+        this.amplify.auth().confirmSignUp(this.emiratesId.toString(), this.code, {
             forceAliasCreation: true
         }).then(function (data) {
             if (data) {
+                _this.alive = !_this.alive;
                 _this.adduser();
                 _this.login();
             }
@@ -168,15 +161,20 @@ var SignUpPage = /** @class */ (function () {
         this.router.navigate(['log-in']);
     };
     SignUpPage.prototype.adduser = function () {
-        this.amplifyService.auth().signIn(this.emiratesId.toString(), this.password2);
-        var usr = [{
-                eid: this.emiratesId,
-                name: this.name,
-                email: this.email,
-            }];
-        this.amplifyService.api().post('donorapi', '/donor-ionic', { body: usr })
-            .catch(function (err) {
-            console.log("Error saving list: " + err);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var myInit, path;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                myInit = {
+                    body: {
+                        eid: this.emiratesId.toString(),
+                        email: this.email,
+                        name: this.name
+                    }
+                };
+                path = '/donor';
+                this.amplify.api().post('donor', path, myInit);
+                return [2 /*return*/];
+            });
         });
     };
     SignUpPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -185,7 +183,7 @@ var SignUpPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./sign-up.page.html */ "./src/app/sign-up/sign-up.page.html"),
             styles: [__webpack_require__(/*! ./sign-up.page.scss */ "./src/app/sign-up/sign-up.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Events"], aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__["AmplifyService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [aws_amplify_angular__WEBPACK_IMPORTED_MODULE_4__["AmplifyService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], SignUpPage);
     return SignUpPage;
 }());

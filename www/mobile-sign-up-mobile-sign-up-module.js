@@ -165,9 +165,9 @@ var MobileSignUpPage = /** @class */ (function () {
     };
     MobileSignUpPage.prototype.adduser = function () {
         var usr = [{
-                eid: this.emiratesId,
-                name: this.name,
-                email: this.email
+                "eid": this.emiratesId,
+                "name": this.name,
+                "email": this.email
             }];
         this.amplifyService.api().post('donorapi', '/donor', { body: usr })
             .catch(function (err) {
