@@ -84,9 +84,9 @@ export class MobileSignUpPage implements OnInit {
 
   adduser(){
     let usr = [{
-      eid: this.emiratesId,
-      name: this.name,
-      email: this.email
+      "eid": this.emiratesId,
+      "name": this.name,
+      "email": this.email
     }]
     this.amplifyService.api().post('donorapi', '/donor', {body: usr})
     .catch((err) => {

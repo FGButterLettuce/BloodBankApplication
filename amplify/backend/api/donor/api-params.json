@@ -2,17 +2,17 @@
     "paths": [
         {
             "name": "/donor",
-            "lambdaFunction": "donorlambda",
+            "lambdaFunction": "donor",
             "privacy": {
                 "open": true
             }
         }
     ],
-    "resourceName": "donorapi",
-    "apiName": "donorapi",
+    "resourceName": "donor",
+    "apiName": "donor",
     "functionArns": [
         {
-            "lambdaFunction": "donorlambda"
+            "lambdaFunction": "donor"
         }
     ],
     "privacy": {
@@ -24,7 +24,7 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "donorlambda",
+            "resourceName": "donor",
             "attributes": [
                 "Name",
                 "Arn"

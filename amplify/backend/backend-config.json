@@ -13,7 +13,7 @@
 	},
 	"analytics": {},
 	"function": {
-		"donorlambda": {
+		"donor": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
@@ -30,13 +30,13 @@
 		}
 	},
 	"api": {
-		"donorapi": {
+		"donor": {
 			"service": "API Gateway",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [
 				{
 					"category": "function",
-					"resourceName": "donorlambda",
+					"resourceName": "donor",
 					"attributes": [
 						"Name",
 						"Arn"

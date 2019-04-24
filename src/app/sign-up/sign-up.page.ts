@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from 'aws-amplify';
-import { AlertController,Events } from '@ionic/angular';
+import { Auth, API } from 'aws-amplify';
+import { AlertController } from '@ionic/angular';
 import { AmplifyService } from 'aws-amplify-angular'
 
-
-import Amplify from 'aws-amplify';
-import amplify from 'src/aws-exports.js';
-Amplify.configure(amplify);
 
 
 @Component({
@@ -27,14 +23,9 @@ export class SignUpPage implements OnInit {
   code: string;
 
 
-  amplifyService: AmplifyService;
-
-  user:any;
 
 
-  constructor(private events: Events, private amplify: AmplifyService,private router: Router, public alertController: AlertController) { 
-  this.amplifyService = amplify
-  }
+  constructor(private amplify: AmplifyService, private router: Router, public alertController: AlertController) {  }
 
   ngOnInit() {
   }
@@ -57,10 +48,8 @@ export class SignUpPage implements OnInit {
     }
 
 
-
-
     else {
-      Auth.signUp({
+     this.amplify.auth().signUp({
         username: this.emiratesId.toString(),
         password: this.password2,
         attributes: {
@@ -68,21 +57,22 @@ export class SignUpPage implements OnInit {
           name: this.name
         },
       })
-        .then(data => console.log(data))
+        .then(data => 
+          this.alive = !this.alive)
         .catch(err => console.log(err, this.presentAlert(err)));
       console.log(this.emiratesId);
-      this.alive=!this.alive;
     }
   }
 
   confirmation() {
-    Auth.confirmSignUp(this.emiratesId.toString(), this.code, {
+    this.amplify.auth().confirmSignUp(this.emiratesId.toString(), this.code, {
       forceAliasCreation: true
     }).then(data => {
-        if(data){
-          this.adduser();
-          this.login()
-        }
+      if (data) {
+        this.alive = !this.alive;
+        this.adduser();
+        this.login()
+      }
     })
       .catch(err => console.log(err));
   }
@@ -90,17 +80,17 @@ export class SignUpPage implements OnInit {
   login() {
     this.router.navigate(['log-in']);
   }
-  
-  adduser(){
-    this.amplifyService.auth().signIn(this.emiratesId.toString(), this.password2);
-    let usr = [{
-      eid: this.emiratesId,
-      name: this.name,
-      email: this.email,
-    }];
-    this.amplifyService.api().post('donorapi', '/donor-ionic', {body: usr})
-    .catch((err) => {
-      console.log(`Error saving list: ${err}`)
-    })
+
+  async adduser() {
+
+    let myInit = {
+      body: {
+        eid: this.emiratesId.toString(),
+        email: this.email,
+        name: this.name
+      }
+    }
+    const path = '/donor';
+    this.amplify.api().post('donor', path, myInit)
   }
 }

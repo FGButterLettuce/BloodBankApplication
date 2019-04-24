@@ -14,15 +14,15 @@
         },
     
     
-          "functiondonorlambdaName": {
+          "functiondonorName": {
             "Type": "String",
-            "Default": "functiondonorlambdaName"
+            "Default": "functiondonorName"
           },
         
           
-          "functiondonorlambdaArn": {
+          "functiondonorArn": {
             "Type": "String",
-            "Default": "functiondonorlambdaArn"
+            "Default": "functiondonorArn"
           }
         
           
@@ -42,16 +42,16 @@
     "Resources": {
         
         
-      "donorapi": {
+      "donor": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "donorapi",
+          "Name": "donor",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "donorapi"
+              "title": "donor"
             },
             "host": {
                 "Fn::Join": [
@@ -173,7 +173,7 @@
                             
                             {
                                 
-                                "Ref": "functiondonorlambdaArn"
+                                "Ref": "functiondonorArn"
                             },
                             
                             "/invocations"
@@ -272,7 +272,7 @@
                           
                           {
                             
-                            "Ref": "functiondonorlambdaArn"
+                            "Ref": "functiondonorArn"
                           },
                           
                           "/invocations"
@@ -329,12 +329,12 @@
                   
         
         
-        "functiondonorlambdaPermissiondonorapi": {
+        "functiondonorPermissiondonor": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functiondonorlambdaName"
+                        "Ref":  "functiondonorName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -353,7 +353,7 @@
                             },
                             ":",
                             {
-                                "Ref": "donorapi"
+                                "Ref": "donor"
                             },
                             "/*/*/*"
                         ]
@@ -364,7 +364,7 @@
         
         
         
-      "DeploymentAPIGWdonorapi": {
+      "DeploymentAPIGWdonor": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
@@ -378,7 +378,7 @@
             ]
           },
           "RestApiId": {
-            "Ref": "donorapi"
+            "Ref": "donor"
           }
         }
       }
@@ -386,11 +386,11 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "donorapi"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "donor"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",
-          "Value": "donorapi"
+          "Value": "donor"
         }
     }
   }

@@ -16,8 +16,8 @@ const awsmobile = {
     ],
     "aws_cloud_logic_custom": [
         {
-            "name": "donorapi",
-            "endpoint": "https://wbdbx4iqnk.execute-api.eu-west-1.amazonaws.com/ionic",
+            "name": "donor",
+            "endpoint": "https://kmf86bfju3.execute-api.eu-west-1.amazonaws.com/ionic",
             "region": "eu-west-1"
         }
     ]
