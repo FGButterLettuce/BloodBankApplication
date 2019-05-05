@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 @Component({
   selector: 'app-schedule',
@@ -8,13 +7,18 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
   styleUrls: ['./schedule.page.scss'],
 })
 export class SchedulePage implements OnInit {
-
-
+  time:String;
+  date:String;
+  datentime:String;
+  bloodgroup:String;
   calendarPlugins = [dayGridPlugin]; // important!
 
-  constructor(private datePicker: DatePicker) { }
+  constructor() { }
 
   ngOnInit() {
   }
-
+  schedule(){
+    console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
+    console.log(this.bloodgroup);
+  }
 }

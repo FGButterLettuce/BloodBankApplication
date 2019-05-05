@@ -5,29 +5,50 @@
 </ion-header> -->
 
 <ion-content>
-    <!-- <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar> -->
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-          <ion-grid>
-            <!-- <ion-col>
-              <div class="fadeIn first">
-                <h1>Current Points</h1>
-                <h1 [countUp] = "pointsum">0</h1>
-              </div>
-            </ion-col> --> 
-            <ion-col>
-              <div text-center>
-                <ion-list>
-                  <ion-item *ngFor="let i of pointreturn.points;">
-                    <div class="item-content">
-                      <h3>Donation Date: {{i.date}}</h3>
-                      <h3>Points: {{i.point}}</h3>
-                    </div>
-                  </ion-item>
-                </ion-list>
-              </div>
-            </ion-col>
-          </ion-grid>
-        </div>
-      </div>
+  <!-- <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar> -->
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <ion-grid>
+        <ion-col>
+          <full-calendar #calendar (dateClick)="handleDateClick($event)" [themeSystem]="bootstrap4"
+            [plugins]="calendarPlugins"></full-calendar>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-list>
+              <ion-item>
+                <b>Select Time: </b>
+                <ion-datetime placeholder="" display-format="h:mm a" picker-format="h mm a" [(ngModel)]="time">
+                </ion-datetime>
+              </ion-item>
+              <ion-item>
+                <b>Select Date: </b>
+                <ion-datetime placeholder="" display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY"
+                  [(ngModel)]="date"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <b>Blood Group</b>
+
+                <ion-select color="#ffff" placeholder="Select One" [(ngModel)]="bloodgroup">
+                  <ion-select-option color="#ffff" value="O+">O+</ion-select-option>
+                  <ion-select-option value="O-">O-</ion-select-option>
+                  <ion-select-option value="A+">A+</ion-select-option>
+                  <ion-select-option value="A-">A-</ion-select-option>
+                  <ion-select-option value="B+">B+</ion-select-option>
+                  <ion-select-option value="B-">B-</ion-select-option>
+                  <ion-select-option value="AB+">AB+</ion-select-option>
+                  <ion-select-option value="AB-">AB-</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            <div text-center>
+              <ion-button shape="round" color="danger" size="large" (click)="schedule()">
+                <ion-icon name="calendar"></ion-icon>&nbsp;Schedule
+              </ion-button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>

@@ -26,7 +26,10 @@ export class SessionService {
     }).catch((err) => {
       console.log(err);
     });
+  }
 
+  async getEvents(){
+    await this.amplifyService.api().get('')
   }
 }
 
