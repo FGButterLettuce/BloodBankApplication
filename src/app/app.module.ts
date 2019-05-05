@@ -18,7 +18,6 @@ import { SessionService } from './services/session/session.service';
 import { CountUpModule } from 'countup.js-angular2';
 import * as moment from 'moment';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import Amplify from 'aws-amplify';
@@ -30,7 +29,7 @@ Amplify.configure(amplify);
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule, AmplifyAngularModule,NgbModule],
+    BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule, AmplifyAngularModule],
   providers: [
     StatusBar,
     SessionService,

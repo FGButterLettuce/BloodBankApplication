@@ -16,6 +16,22 @@ const awsmobile = {
         {
             "tableName": "points-ionic",
             "region": "eu-west-1"
+        },
+        {
+            "tableName": "records-ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "tableName": "hospitals-ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "tableName": "campaigns-ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "tableName": "donations-ionic",
+            "region": "eu-west-1"
         }
     ],
     "aws_cloud_logic_custom": [
@@ -27,6 +43,26 @@ const awsmobile = {
         {
             "name": "points",
             "endpoint": "https://u957tmcv2l.execute-api.eu-west-1.amazonaws.com/ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "name": "recordsapi",
+            "endpoint": "https://avy536loja.execute-api.eu-west-1.amazonaws.com/ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "name": "hospitalsapi",
+            "endpoint": "https://sg3oj1p8ac.execute-api.eu-west-1.amazonaws.com/ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "name": "campaignsapi",
+            "endpoint": "https://h1pd72g0f7.execute-api.eu-west-1.amazonaws.com/ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "name": "donationsapi",
+            "endpoint": "https://frymkfagz2.execute-api.eu-west-1.amazonaws.com/ionic",
             "region": "eu-west-1"
         }
     ]
