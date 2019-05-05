@@ -29,7 +29,7 @@ export class AppComponent {
         this.router.navigate(['mobile-home']);
       }
       else
-        this.router.navigate(['home']);
+        this.router.navigate(['schedule']);
     });
   }
 }

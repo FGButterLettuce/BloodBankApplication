@@ -1,11 +1,33 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>schedule</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
-  <div height= "800px" width="600px">
-    <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar>
-  </div>
+    <!-- <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar> -->
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <ion-grid>
+            <!-- <ion-col>
+              <div class="fadeIn first">
+                <h1>Current Points</h1>
+                <h1 [countUp] = "pointsum">0</h1>
+              </div>
+            </ion-col> --> 
+            <ion-col>
+              <div text-center>
+                <ion-list>
+                  <ion-item *ngFor="let i of pointreturn.points;">
+                    <div class="item-content">
+                      <h3>Donation Date: {{i.date}}</h3>
+                      <h3>Points: {{i.point}}</h3>
+                    </div>
+                  </ion-item>
+                </ion-list>
+              </div>
+            </ion-col>
+          </ion-grid>
+        </div>
+      </div>
 </ion-content>
