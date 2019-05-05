@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from 'aws-amplify';
 import { AlertController } from '@ionic/angular';
 import { SessionService } from '../services/session/session.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 
-import Amplify from 'aws-amplify';
-import amplify from 'src/aws-exports.js';
-Amplify.configure(amplify);
+// import Amplify from 'aws-amplify';
+// import amplify from 'src/aws-exports.js';
+// Amplify.configure(amplify);
 
 @Component({
   selector: 'app-log-in',
@@ -19,7 +19,7 @@ export class LogInPage implements OnInit {
   emiratesId: string;
   password: string;
 
-  constructor(public session: SessionService,private router: Router, public alertController: AlertController) { }
+  constructor(public amplify:AmplifyService, public session: SessionService,private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -36,11 +36,9 @@ export class LogInPage implements OnInit {
 
   async login() {
     try {
-      const user = await Auth.signIn(this.emiratesId.toString(), this.password)
-      //session add user
-      // console.log(user.attributes.name);
-      // console.log(JSON.stringify(user));
+      const user = await this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
       this.session.user = user;
+      await this.session.getPoints(this.emiratesId.toString());
       this.router.navigate(['user-home']);
     }
     catch (err) {

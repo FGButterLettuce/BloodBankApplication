@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SessionService } from '../services/session/session.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-mobile-user-home',
@@ -9,20 +10,26 @@ import { SessionService } from '../services/session/session.service';
 })
 export class MobileUserHomePage implements OnInit {
   name: string;
-
-  constructor(public session: SessionService, private acr: ActivatedRoute, private router: Router) {
+  pointsum;
+  constructor(public session: SessionService, private router: Router, public amplifyService: AmplifyService) {
     this.name = this.session.user.attributes.name;
+    this.pointsum = this.session.pointsum;
   }
   ngOnInit() {
   }
 
-  // points(){
-  //   this.router.navigate(['mobile-points']);
-  // }
-  // schedule(){
-  //   this.router.navigate(['schedule']);
-  // }
-  getPoints(){
-    //getpoints from object
+  points() {
+    this.router.navigate(['mobile-points']);
+  }
+  
+  schedule() {
+    this.router.navigate(['schedule']);
+  }
+
+  logout() {
+
+    this.amplifyService.auth().signOut().then(data =>
+      console.log(data))
+      .catch(err => console.log(err));
   }
 }

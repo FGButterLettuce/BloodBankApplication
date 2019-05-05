@@ -62,7 +62,7 @@ var LogInPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n\n\n  \n    <div class=\"wrapper fadeInDown\">\n      <div id=\"formContent\">\n        <!-- Tabs Titles -->\n        <h2 class=\"active\"> Log In </h2>\n        <!-- <h2 class=\"inactive underlineHover\">Sign Up </h2> -->\n    \n        <!-- Icon -->\n        <div class=\"fadeIn first\">\n          <ion-icon name=\"contact\" color=\"danger\" size=\"large\"></ion-icon>\n        </div>\n    \n        <!-- Login Form -->\n        <form>\n          <h2>Emirates ID</h2>\n          <input type=\"text\" id=\"username\" class=\"fadeIn second\" name=\"login\" value=\"\" [(ngModel)]=\"emiratesId\" placeholder=\"xxx-xxxx-xxxxxxx-x\">\n          <h2>Password</h2>\n          <input type=\"password\" id=\"password\" class=\"fadeIn third\" name=\"login\" [(ngModel)]=\"password\">\n          <input type=\"submit\" class=\"fadeIn fourth\" value=\"Log In\" (click)=\"login()\">\n        </form>\n    \n        <!-- Remind Password -->\n        <div id=\"formFooter\">\n          <a class=\"underlineHover\" (click)=\"signup()\">Dont have an account?</a>\n        </div>\n      </div>\n    </div>\n  \n    \n  </body>"
+module.exports = "<body>\n    <div class=\"wrapper fadeInDown\">\n      <div id=\"formContent\">\n        <!-- Tabs Titles -->\n        <h2 class=\"active\"> Log In </h2>\n        <!-- <h2 class=\"inactive underlineHover\">Sign Up </h2> -->\n    \n        <!-- Icon -->\n        <div class=\"fadeIn first\">\n          <ion-icon name=\"contact\" color=\"danger\" size=\"large\"></ion-icon>\n        </div>\n    \n        <!-- Login Form -->\n        <form>\n          <h2>Emirates ID</h2>\n          <input type=\"text\" id=\"username\" class=\"fadeIn second\" name=\"login\" value=\"\" [(ngModel)]=\"emiratesId\" placeholder=\"xxx-xxxx-xxxxxxx-x\">\n          <h2>Password</h2>\n          <input type=\"password\" id=\"password\" class=\"fadeIn third\" name=\"login\" [(ngModel)]=\"password\">\n          <input type=\"submit\" class=\"fadeIn fourth\" value=\"Log In\" (click)=\"login()\">\n        </form>\n    \n        <!-- Remind Password -->\n        <div id=\"formFooter\">\n          <a class=\"underlineHover\" (click)=\"signup()\">Dont have an account?</a>\n        </div>\n      </div>\n    </div>    \n  </body>"
 
 /***/ }),
 
@@ -90,22 +90,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
-/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
 
 
 
 
 
 
-
-
-aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
+// import Amplify from 'aws-amplify';
+// import amplify from 'src/aws-exports.js';
+// Amplify.configure(amplify);
 var LogInPage = /** @class */ (function () {
-    function LogInPage(session, router, alertController) {
+    function LogInPage(amplify, session, router, alertController) {
+        this.amplify = amplify;
         this.session = session;
         this.router = router;
         this.alertController = alertController;
@@ -137,7 +136,7 @@ var LogInPage = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].signIn(this.emiratesId.toString(), this.password)
+                        return [4 /*yield*/, this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
                             //session add user
                             // console.log(user.attributes.name);
                             // console.log(JSON.stringify(user));
@@ -190,7 +189,7 @@ var LogInPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./log-in.page.html */ "./src/app/log-in/log-in.page.html"),
             styles: [__webpack_require__(/*! ./log-in.page.scss */ "./src/app/log-in/log-in.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_5__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__["AmplifyService"], _services_session_session_service__WEBPACK_IMPORTED_MODULE_4__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], LogInPage);
     return LogInPage;
 }());

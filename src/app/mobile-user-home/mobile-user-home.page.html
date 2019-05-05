@@ -11,13 +11,14 @@
     <div id="formContent">
       <!-- Tabs Titles -->
       <h2 class="active"> Welcome {{name}} </h2>
-
+      <ion-grid>
+        <ion-col>
       <!-- Icon -->
       <div class="fadeIn first">
         <h1>POINTS</h1>
-        <h1 [countUp]="999">0</h1>
+        <h1 [countUp]="pointsum">0</h1>
       </div>
-
+      <!-- <ion-row> -->
       <div text-center>
         <ion-button shape="round" color="danger" size="medium" (click)="points()">
           <ion-icon name="filing"></ion-icon>&nbsp;View Point History
@@ -30,7 +31,16 @@
         <ion-button shape="round" color="danger" size="medium">
           <ion-icon name="calendar"></ion-icon>&nbsp;View Event Calendar
         </ion-button>
+        <br>
+        <br>
+        <br>
+        <ion-button shape="round" color="danger" size="medium">
+          <ion-icon name="log-out"></ion-icon>&nbsp;Log Out
+        </ion-button>
       </div>
+      <!-- </ion-row> -->
+    </ion-col>
+      </ion-grid>
     </div>
   </div>
 </ion-content>

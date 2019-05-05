@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   selector: 'app-schedule',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schedule.page.scss'],
 })
 export class SchedulePage implements OnInit {
+
+
+  calendarPlugins = [dayGridPlugin]; // important!
 
   constructor() { }
 

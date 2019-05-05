@@ -12,12 +12,21 @@ const awsmobile = {
         {
             "tableName": "donor-ionic",
             "region": "eu-west-1"
+        },
+        {
+            "tableName": "points-ionic",
+            "region": "eu-west-1"
         }
     ],
     "aws_cloud_logic_custom": [
         {
             "name": "donor",
             "endpoint": "https://kmf86bfju3.execute-api.eu-west-1.amazonaws.com/ionic",
+            "region": "eu-west-1"
+        },
+        {
+            "name": "points",
+            "endpoint": "https://u957tmcv2l.execute-api.eu-west-1.amazonaws.com/ionic",
             "region": "eu-west-1"
         }
     ]

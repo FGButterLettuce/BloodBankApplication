@@ -11,17 +11,29 @@ import { Events } from '@ionic/angular';
 })
 export class UserHomePage implements OnInit {
   name: string;
-  user: any;
-
-  constructor(public session: SessionService, private acr: ActivatedRoute, private router: Router, private amplifyService: AmplifyService, private events: Events) {
+  pointsum;
+  constructor(private session: SessionService, private acr: ActivatedRoute, private router: Router, private amplifyService: AmplifyService, private events: Events) {
     this.name = this.session.user.attributes.name;
+    this.pointsum = this.session.pointsum;
   }
 
   ngOnInit() {
   }
+  
   points() {
     this.router.navigate(['points']);
   }
 
+  schedule(){
+    
+    this.router.navigate(['schedule']);
 
+  }
+
+  logout(){
+
+    this.amplifyService.auth().signOut().then(data =>
+       console.log(data))
+       .catch(err=> console.log(err));
+  }
 }

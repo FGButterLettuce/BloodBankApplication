@@ -5,26 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SchedulePage } from './schedule.page';
-
-import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
-
+import { MobileSchedulePage } from './mobile-schedule.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SchedulePage
+    component: MobileSchedulePage
   }
 ];
 
 @NgModule({
   imports: [
-  CommonModule,
-    FullCalendarModule,
+    CommonModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SchedulePage]
+  declarations: [MobileSchedulePage]
 })
-export class SchedulePageModule {}
+export class MobileSchedulePageModule {}

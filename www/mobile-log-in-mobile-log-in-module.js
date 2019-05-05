@@ -86,22 +86,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify */ "./node_modules/aws-amplify/lib/index.js");
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
-/* harmony import */ var src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/aws-exports.js */ "./src/aws-exports.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _services_session_session_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/session/session.service */ "./src/app/services/session/session.service.ts");
+/* harmony import */ var aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! aws-amplify-angular */ "./node_modules/aws-amplify-angular/dist/index.js");
 
 
 
 
 
 
-
-
-aws_amplify__WEBPACK_IMPORTED_MODULE_3___default.a.configure(src_aws_exports_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
+// import Amplify from 'aws-amplify';
+// import amplify from 'src/aws-exports.js';
+// Amplify.configure(amplify);
 var MobileLogInPage = /** @class */ (function () {
-    function MobileLogInPage(session, router, alertController) {
+    function MobileLogInPage(amplify, session, router, alertController) {
+        this.amplify = amplify;
         this.session = session;
         this.router = router;
         this.alertController = alertController;
@@ -155,7 +154,7 @@ var MobileLogInPage = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, aws_amplify__WEBPACK_IMPORTED_MODULE_3__["Auth"].signIn(this.emiratesId.toString(), this.password)
+                        return [4 /*yield*/, this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
                             //session add user
                             // console.log(user.attributes.name);
                             // console.log(JSON.stringify(user));
@@ -208,7 +207,7 @@ var MobileLogInPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./mobile-log-in.page.html */ "./src/app/mobile-log-in/mobile-log-in.page.html"),
             styles: [__webpack_require__(/*! ./mobile-log-in.page.scss */ "./src/app/mobile-log-in/mobile-log-in.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_session_session_service__WEBPACK_IMPORTED_MODULE_5__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [aws_amplify_angular__WEBPACK_IMPORTED_MODULE_5__["AmplifyService"], _services_session_session_service__WEBPACK_IMPORTED_MODULE_4__["SessionService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], MobileLogInPage);
     return MobileLogInPage;
 }());

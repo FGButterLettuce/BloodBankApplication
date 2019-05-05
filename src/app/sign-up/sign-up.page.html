@@ -1,16 +1,14 @@
 <body>
   <div class="wrapper fadeInDown">
     <div id="formContent">
-      <!-- Tabs Titles -->
       <h2 class="active"> Sign Up </h2>
-      <!-- <h2 class="inactive underlineHover">Sign Up </h2> -->
 
       <!-- Icon -->
       <div class="fadeIn first">
         <ion-icon name="contact" color="danger" size="large"></ion-icon>
       </div>
 
-      <!-- Login Form -->
+      <!-- Sign Up Form -->
       <form>
         <div *ngIf="!alive">
           <h2>Emirates ID</h2>
@@ -18,7 +16,7 @@
             placeholder="xxx-xxxx-xxxxxxx-x">
           <h2>Name</h2>
           <input type="text" id="name" class="fadeIn third" name="pNo" required [(ngModel)]="name"
-            placeholder="+971-5X-XXXXXXX">
+            placeholder="John Doe">
           <h2>Email</h2>
           <input type="text" id="email" class="fadeIn fourth" name="email" required [(ngModel)]="email"
             placeholder="example@example.com">

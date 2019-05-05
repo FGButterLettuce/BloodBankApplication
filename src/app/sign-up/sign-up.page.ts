@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth, API } from 'aws-amplify';
 import { AlertController } from '@ionic/angular';
 import { AmplifyService } from 'aws-amplify-angular'
 
@@ -21,8 +20,6 @@ export class SignUpPage implements OnInit {
   password2: string;
   alive: boolean = false;
   code: string;
-
-
 
 
   constructor(private amplify: AmplifyService, private router: Router, public alertController: AlertController) {  }
@@ -70,7 +67,7 @@ export class SignUpPage implements OnInit {
     }).then(data => {
       if (data) {
         this.alive = !this.alive;
-        this.adduser();
+        this.addusertoDB();
         this.login()
       }
     })
@@ -81,7 +78,7 @@ export class SignUpPage implements OnInit {
     this.router.navigate(['log-in']);
   }
 
-  async adduser() {
+  async addusertoDB() {
 
     let myInit = {
       body: {
@@ -91,6 +88,6 @@ export class SignUpPage implements OnInit {
       }
     }
     const path = '/donor';
-    this.amplify.api().post('donor', path, myInit)
+    await this.amplify.api().post('donor', path, myInit)
   }
 }

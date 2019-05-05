@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'points', loadChildren: './user/points/points.module#PointsPageModule' },
   { path: 'schedule', loadChildren: './user/schedule/schedule.module#SchedulePageModule' },
   { path: 'mobile-points', loadChildren: './user/mobile-points/mobile-points.module#MobilePointsPageModule' },
+  { path: 'mobile-schedule', loadChildren: './users/mobile-schedule/mobile-schedule.module#MobileSchedulePageModule' },
 ];
 
 @NgModule({

@@ -61,7 +61,7 @@ var SignUpPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <!-- Tabs Titles -->\n      <h2 class=\"active\"> Sign Up </h2>\n      <!-- <h2 class=\"inactive underlineHover\">Sign Up </h2> -->\n\n      <!-- Icon -->\n      <div class=\"fadeIn first\">\n        <ion-icon name=\"contact\" color=\"danger\" size=\"large\"></ion-icon>\n      </div>\n\n      <!-- Login Form -->\n      <form>\n        <div *ngIf=\"!alive\">\n          <h2>Emirates ID</h2>\n          <input type=\"text\" id=\"emiratesId\" class=\"fadeIn second\" name=\"eID\" required [(ngModel)]=\"emiratesId\"\n            placeholder=\"xxx-xxxx-xxxxxxx-x\">\n          <h2>Name</h2>\n          <input type=\"text\" id=\"name\" class=\"fadeIn third\" name=\"pNo\" required [(ngModel)]=\"name\"\n            placeholder=\"+971-5X-XXXXXXX\">\n          <h2>Email</h2>\n          <input type=\"text\" id=\"email\" class=\"fadeIn fourth\" name=\"email\" required [(ngModel)]=\"email\"\n            placeholder=\"example@example.com\">\n          <h2>Password</h2>\n          <input type=\"text\" id=\"password\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"password1\"\n            placeholder=\"Use a strong password\">\n          <br>\n          <h2>Confirm Password</h2>\n          <input type=\"text\" id=\"mobileNum\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"password2\"\n            placeholder=\"Re-enter password\">\n          <br>\n          <input type=\"submit\" class=\"fadeIn sixth\" value=\"Sign Up\" (click)=\"signup()\">\n        </div>\n        <div *ngIf=\"alive\">\n          <h2 class=\"fadeIn first\">Check Email For Confirmation Code</h2>\n          <input type=\"text\" id=\"code\" class=\"fadeIn second\" name=\"code\" required [(ngModel)]=\"code\">\n          <input type=\"submit\" class=\"fadeIn third\" value=\"confirm\" (click)=\"confirmation()\">\n\n        </div>\n\n      </form>\n\n      <!-- <amplify-authenticator id=\"authauth\" framework=\"Ionic\"></amplify-authenticator> -->\n\n      <!-- Remind Password -->\n      <div id=\"formFooter\">\n        <a class=\"underlineHover\" (click)=\"login()\">Already have an account?</a>\n      </div>\n    </div>\n  </div>\n</body>"
+module.exports = "<body>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <h2 class=\"active\"> Sign Up </h2>\n\n      <!-- Icon -->\n      <div class=\"fadeIn first\">\n        <ion-icon name=\"contact\" color=\"danger\" size=\"large\"></ion-icon>\n      </div>\n\n      <!-- Sign Up Form -->\n      <form>\n        <div *ngIf=\"!alive\">\n          <h2>Emirates ID</h2>\n          <input type=\"text\" id=\"emiratesId\" class=\"fadeIn second\" name=\"eID\" required [(ngModel)]=\"emiratesId\"\n            placeholder=\"xxx-xxxx-xxxxxxx-x\">\n          <h2>Name</h2>\n          <input type=\"text\" id=\"name\" class=\"fadeIn third\" name=\"pNo\" required [(ngModel)]=\"name\"\n            placeholder=\"John Doe\">\n          <h2>Email</h2>\n          <input type=\"text\" id=\"email\" class=\"fadeIn fourth\" name=\"email\" required [(ngModel)]=\"email\"\n            placeholder=\"example@example.com\">\n          <h2>Password</h2>\n          <input type=\"text\" id=\"password\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"password1\"\n            placeholder=\"Use a strong password\">\n          <br>\n          <h2>Confirm Password</h2>\n          <input type=\"text\" id=\"mobileNum\" class=\"fadeIn fifth\" name=\"pwd\" required [(ngModel)]=\"password2\"\n            placeholder=\"Re-enter password\">\n          <br>\n          <input type=\"submit\" class=\"fadeIn sixth\" value=\"Sign Up\" (click)=\"signup()\">\n        </div>\n        <div *ngIf=\"alive\">\n          <h2 class=\"fadeIn first\">Check Email For Confirmation Code</h2>\n          <input type=\"text\" id=\"code\" class=\"fadeIn second\" name=\"code\" required [(ngModel)]=\"code\">\n          <input type=\"submit\" class=\"fadeIn third\" value=\"confirm\" (click)=\"confirmation()\">\n\n        </div>\n\n      </form>\n\n      <!-- <amplify-authenticator id=\"authauth\" framework=\"Ionic\"></amplify-authenticator> -->\n\n      <!-- Remind Password -->\n      <div id=\"formFooter\">\n        <a class=\"underlineHover\" (click)=\"login()\">Already have an account?</a>\n      </div>\n    </div>\n  </div>\n</body>"
 
 /***/ }),
 
@@ -151,7 +151,7 @@ var SignUpPage = /** @class */ (function () {
         }).then(function (data) {
             if (data) {
                 _this.alive = !_this.alive;
-                _this.adduser();
+                _this.addusertoDB();
                 _this.login();
             }
         })
@@ -160,20 +160,25 @@ var SignUpPage = /** @class */ (function () {
     SignUpPage.prototype.login = function () {
         this.router.navigate(['log-in']);
     };
-    SignUpPage.prototype.adduser = function () {
+    SignUpPage.prototype.addusertoDB = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var myInit, path;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                myInit = {
-                    body: {
-                        eid: this.emiratesId.toString(),
-                        email: this.email,
-                        name: this.name
-                    }
-                };
-                path = '/donor';
-                this.amplify.api().post('donor', path, myInit);
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        myInit = {
+                            body: {
+                                eid: this.emiratesId.toString(),
+                                email: this.email,
+                                name: this.name
+                            }
+                        };
+                        path = '/donor';
+                        return [4 /*yield*/, this.amplify.api().post('donor', path, myInit)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

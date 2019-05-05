@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from 'aws-amplify';
 import { AmplifyService } from 'aws-amplify-angular'
-
 import { AlertController } from '@ionic/angular';
-
-import Amplify from 'aws-amplify';
-import amplify from 'src/aws-exports.js';
-Amplify.configure(amplify);
 
 @Component({
   selector: 'app-mobile-sign-up',
@@ -21,13 +15,10 @@ export class MobileSignUpPage implements OnInit {
   email: string;
   password1: string;
   password2: string;
-
   alive: boolean = false;
-
-
   code: string;
 
-  constructor(private amplifyService: AmplifyService,private router: Router, public alertController: AlertController) { }
+  constructor(private amplify: AmplifyService, private router: Router, public alertController: AlertController) {  }
 
   ngOnInit() {
   }
@@ -48,8 +39,9 @@ export class MobileSignUpPage implements OnInit {
       this.presentAlert('Passwords dont match!');
     }
 
+
     else {
-      Auth.signUp({
+     this.amplify.auth().signUp({
         username: this.emiratesId.toString(),
         password: this.password2,
         attributes: {
@@ -57,40 +49,40 @@ export class MobileSignUpPage implements OnInit {
           name: this.name
         },
       })
-        .then(data => console.log(data))
+        .then(data => 
+          this.alive = !this.alive)
         .catch(err => console.log(err, this.presentAlert(err)));
       console.log(this.emiratesId);
-      this.alive=!this.alive;
     }
   }
 
   confirmation() {
-    Auth.confirmSignUp(this.emiratesId.toString(), this.code, {
-      // Optional. Force user confirmation irrespective of existing alias. By default set to True.
+    this.amplify.auth().confirmSignUp(this.emiratesId.toString(), this.code, {
       forceAliasCreation: true
     }).then(data => {
-        if(data){
-          this.adduser();
-          this.login()
-        }
+      if (data) {
+        this.alive = !this.alive;
+        this.addusertoDB();
+        this.login()
+      }
     })
       .catch(err => console.log(err));
   }
 
-  login(){
-    this.router.navigate(['mobile-log-in']);
+  login() {
+    this.router.navigate(['log-in']);
   }
 
+  async addusertoDB() {
 
-  adduser(){
-    let usr = [{
-      "eid": this.emiratesId,
-      "name": this.name,
-      "email": this.email
-    }]
-    this.amplifyService.api().post('donorapi', '/donor', {body: usr})
-    .catch((err) => {
-      console.log(`Error saving list: ${err}`)
-    })
+    let myInit = {
+      body: {
+        eid: this.emiratesId.toString(),
+        email: this.email,
+        name: this.name
+      }
+    }
+    const path = '/donor';
+    await this.amplify.api().post('donor', path, myInit)
   }
 }

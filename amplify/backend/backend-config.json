@@ -9,6 +9,10 @@
 		"donor": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
+		},
+		"points": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
 		}
 	},
 	"analytics": {},
@@ -27,6 +31,21 @@
 					]
 				}
 			]
+		},
+		"pointsfn": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "points",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"api": {
@@ -37,6 +56,20 @@
 				{
 					"category": "function",
 					"resourceName": "donor",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		},
+		"points": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "pointsfn",
 					"attributes": [
 						"Name",
 						"Arn"
