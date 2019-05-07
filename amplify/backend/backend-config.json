@@ -14,10 +14,6 @@
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		},
-		"records": {
-			"service": "DynamoDB",
-			"providerPlugin": "awscloudformation"
-		},
 		"hospitals": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
@@ -27,6 +23,10 @@
 			"providerPlugin": "awscloudformation"
 		},
 		"donations": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		},
+		"records": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		}
@@ -56,21 +56,6 @@
 				{
 					"category": "storage",
 					"resourceName": "points",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		},
-		"recordsfunction": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "storage",
-					"resourceName": "records",
 					"attributes": [
 						"Name",
 						"Arn"
@@ -122,6 +107,21 @@
 					]
 				}
 			]
+		},
+		"recordsfunction": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "records",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"api": {
@@ -146,20 +146,6 @@
 				{
 					"category": "function",
 					"resourceName": "pointsfn",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		},
-		"recordsapi": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "recordsfunction",
 					"attributes": [
 						"Name",
 						"Arn"
@@ -202,6 +188,20 @@
 				{
 					"category": "function",
 					"resourceName": "donationsfunction",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		},
+		"recordsapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "recordsfunction",
 					"attributes": [
 						"Name",
 						"Arn"

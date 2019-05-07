@@ -50,7 +50,56 @@ const convertUrlType = (param, type) => {
       return param;
   }
 }
+/********************************
+ * HTTP Get method for ALL objects *
+ ********************************/
+app.get(path, function (req, res) {
+  let queryStringParameters = req.query;
+  if (queryStringParameters.user_id === undefined) {
+    var params = {
+      TableName: tableName,
+      Select: 'ALL_ATTRIBUTES',
+    };
+    dynamodb.scan(params, (err, data) => {
+      if (err) {
+        res.json({ error: 'Could not load items: ' + err.message });
+      }
 
+      res.json(data.Items)
+    });
+  }
+  else {
+    // Set request params to keep code similar
+    req.params = req.query;
+    var condition = {}
+    condition[partitionKeyName] = {
+      ComparisonOperator: 'EQ'
+    }
+
+    if (userIdPresent && req.apiGateway) {
+      condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
+    } else {
+      try {
+        condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
+      } catch(err) {
+        res.json({error: 'Wrong column type ' + err});
+      }
+    }
+
+    let queryParams = {
+      TableName: tableName,
+      KeyConditions: condition
+    }
+
+    dynamodb.query(queryParams, (err, data) => {
+      if (err) {
+        res.json({error: 'Could not load items: ' + err});
+      } else {
+        res.json(data.Items);
+      }
+    });
+  }
+});
 /********************************
  * HTTP Get method for list objects *
  ********************************/

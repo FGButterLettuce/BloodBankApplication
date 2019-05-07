@@ -33,7 +33,7 @@
                 "AttributeDefinitions": [
                   
                   {
-                      "AttributeName": "hid",
+                      "AttributeName": "rid",
                       "AttributeType": "S"
                   } 
                   
@@ -41,7 +41,7 @@
                 "KeySchema": [
                   
                   {
-                    "AttributeName": "hid",
+                    "AttributeName": "rid",
                     "KeyType": "HASH"
                   } 
                   

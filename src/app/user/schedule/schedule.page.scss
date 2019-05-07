@@ -484,7 +484,7 @@ h3{
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.836);
     text-align: center;
   }
   
@@ -497,7 +497,20 @@ h3{
   //   border-radius: 0 0 10px 10px;
   // }
   
-  
+  #calendar{
+    color:white;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .fc-unthemed td.fc-today{
+    background:#ff000087
+
+  }
+  .fc-button-primary{
+    color:#f04141;
+    color:#a13636;
+  }
+
   
   /* TABS */
   

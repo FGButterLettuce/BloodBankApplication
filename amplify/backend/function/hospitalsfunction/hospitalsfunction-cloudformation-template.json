@@ -68,7 +68,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "bloodbankapplication-20190422163050-deployment",
-					"S3Key": "amplify-builds/hospitalsfunction-1557065146-latest-build.zip"
+					"S3Key": "amplify-builds/hospitalsfunction-1557163700-latest-build.zip"
 				}
 			}
 		},

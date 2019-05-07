@@ -39,6 +39,10 @@ export class LogInPage implements OnInit {
       const user = await this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
       this.session.user = user;
       await this.session.getPoints(this.emiratesId.toString());
+      this.session.eid = this.emiratesId.toString();
+      this.session.getEvents();
+      this.session.checkRecords(this.emiratesId.toString());
+      this.session.getDonations(this.emiratesId.toString());
       this.router.navigate(['user-home']);
     }
     catch (err) {

@@ -47,7 +47,7 @@ const awsmobile = {
         },
         {
             "name": "recordsapi",
-            "endpoint": "https://avy536loja.execute-api.eu-west-1.amazonaws.com/ionic",
+            "endpoint": "https://kcg2fgjnrb.execute-api.eu-west-1.amazonaws.com/ionic",
             "region": "eu-west-1"
         },
         {

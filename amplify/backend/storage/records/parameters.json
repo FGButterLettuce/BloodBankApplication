@@ -1,5 +1,5 @@
 {
     "tableName": "records",
-    "partitionKeyName": "hid",
+    "partitionKeyName": "rid",
     "partitionKeyType": "S"
 }

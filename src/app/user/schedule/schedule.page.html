@@ -10,8 +10,10 @@
     <div id="formContent">
       <ion-grid>
         <ion-col>
-          <full-calendar #calendar (dateClick)="handleDateClick($event)" [themeSystem]="bootstrap4"
-            [plugins]="calendarPlugins"></full-calendar>
+          <div>
+            <full-calendar id="calendar" (dateClick)="handleDateClick($event)" [themeSystem]="bootstrap4"
+              [plugins]="calendarPlugins" [events]="calendarevents"></full-calendar>
+          </div>
         </ion-col>
         <ion-col>
           <div>
@@ -26,11 +28,11 @@
                 <ion-datetime placeholder="" display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY"
                   [(ngModel)]="date"></ion-datetime>
               </ion-item>
-              <ion-item>
+              <ion-item *ngIf="!recordexists.val">
                 <b>Blood Group</b>
 
-                <ion-select color="#ffff" placeholder="Select One" [(ngModel)]="bloodgroup">
-                  <ion-select-option color="#ffff" value="O+">O+</ion-select-option>
+                <ion-select placeholder="Select One" [(ngModel)]="bloodgroup">
+                  <ion-select-option color value="O+">O+</ion-select-option>
                   <ion-select-option value="O-">O-</ion-select-option>
                   <ion-select-option value="A+">A+</ion-select-option>
                   <ion-select-option value="A-">A-</ion-select-option>
