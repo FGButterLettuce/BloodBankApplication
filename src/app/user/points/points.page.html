@@ -6,7 +6,7 @@
         <ion-col>
           <div class="fadeIn first">
             <h1>Current Points</h1>
-            <h1 [countUp] = "pointsum">0</h1>
+            <h1 [countUp]="pointsum">0</h1>
           </div>
         </ion-col>
 
@@ -21,6 +21,13 @@
                 </div>
               </ion-item>
             </ion-list>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div text-center>
+            <ion-button shape="round" color="danger" size="large" (click)="return()">
+              <ion-icon name="arrow-back"></ion-icon>&nbsp;Return
+            </ion-button>
           </div>
         </ion-col>
       </ion-grid>

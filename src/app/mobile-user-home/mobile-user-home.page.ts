@@ -17,19 +17,21 @@ export class MobileUserHomePage implements OnInit {
   }
   ngOnInit() {
   }
-
+  calendar(){
+    this.router.navigate(['mobile-view-calendar']);
+  }
   points() {
     this.router.navigate(['mobile-points']);
   }
   
   schedule() {
-    this.router.navigate(['schedule']);
+    this.router.navigate(['mobile-schedule']);
   }
 
-  logout() {
-
-    this.amplifyService.auth().signOut().then(data =>
-      console.log(data))
-      .catch(err => console.log(err));
+  async logout() {
+    this.router.navigate(['mobile-home'])
+    this.session.clearall()
+    await this.amplifyService.auth().signOut().catch(err => console.log(err));
+    
   }
 }

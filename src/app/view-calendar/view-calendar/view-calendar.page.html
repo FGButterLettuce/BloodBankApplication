@@ -1,0 +1,17 @@
+<ion-content>
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <ion-grid>
+          <ion-col>
+            <div>
+              <full-calendar id="calendar" (dateClick)="handleDateClick($event)" [themeSystem]="bootstrap4"
+                [plugins]="calendarPlugins" [events]="calendarevents"></full-calendar>
+            </div>
+          </ion-col>
+          <ion-button shape="round" color="danger" size="large" (click)="return()">
+            <ion-icon name="arrow-back"></ion-icon>&nbsp;Return
+          </ion-button>
+        </ion-grid>
+      </div>
+    </div>
+  </ion-content>

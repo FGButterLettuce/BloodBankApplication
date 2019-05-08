@@ -8,23 +8,43 @@ import * as moment from 'moment';
 export class SessionService {
   user: any;
   eid;
-  pointobj;
   pointsum = 0;
 
+  pointobj;
   eventsobj;
+  hospitalsobj;
+
   recordexists = {
     val: false,
     bloodgroup: String
   }
   donationexists ={
-    start: String,
-    end: null
+    start: null,
+    end:  null
   };
 
   constructor(private amplifyService: AmplifyService) {
 
   }
 
+  clearall(){
+    this.user= null;
+    this.eid;
+    this.pointsum = 0;
+  
+    this.pointobj = null;
+    this.eventsobj = null;
+    this.hospitalsobj = null;
+  
+    this.recordexists = {
+      val: false,
+      bloodgroup: String
+    }
+    this.donationexists ={
+      start: null,
+      end:  null
+    };
+  }
   async getPoints(eid) {
     await this.amplifyService.api().get('points', `/points/${eid}`, {}).then((res) => {
       if (res && res.length > 0) {
@@ -42,7 +62,7 @@ export class SessionService {
 
   async getEvents() {
     await this.amplifyService.api().get('campaignsapi', `/campaigns`, {}).then((res) => {
-      if (res && res.length) {
+      if (res && res.length > 0) {
         this.eventsobj = res;
       }
     }).catch(err => console.log(err));
@@ -51,7 +71,7 @@ export class SessionService {
   async checkRecords(ueid) {
     var records;
     await this.amplifyService.api().get('recordsapi', `/records`, {}).then((res) => {
-      if (res && res.length) {
+      if (res && res.length > 0) {
         records = res;
       }
     }).catch(err => console.log(err));
@@ -66,17 +86,24 @@ export class SessionService {
   async getDonations(ueid) {
     var donations;
     await this.amplifyService.api().get('donationsapi', `/donations`, {}).then((res) => {
-      if (res && res.length) {
+      if (res && res.length > 0) {
         donations = res;
       }
     }).catch(err => console.log(err));
 
     for (let i of donations) {
-      if (i.eid == ueid) {
+      if (i.eid == ueid && i.success == true) {
         this.donationexists.start = i.date;
-        this.donationexists.end = moment(i.date).add(90,'days').format('YYYY-MM-DD')
+        this.donationexists.end = moment(i.date).add(90,'days').format('YYYY-MM-DD');
       }
     }
+  }
+  async getHospitals() {
+    await this.amplifyService.api().get('hospitalsapi', `/hospitals`, {}).then((res) => {
+      if (res && res.length > 0) {
+        this.hospitalsobj = res;
+      }
+    }).catch(err => console.log(err));
   }
 }
 

@@ -22,6 +22,7 @@
           <h2>Password</h2>
           <input type="password" id="password" class="fadeIn third" name="login" [(ngModel)]="password">
           <input type="submit" class="fadeIn fourth" value="Log in" (click)="login()">
+          <ion-spinner name="dots" size="large" *ngIf="loading" color="danger"></ion-spinner>
         </form>
     
         <!-- Remind Password -->

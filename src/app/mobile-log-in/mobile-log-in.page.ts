@@ -21,6 +21,7 @@ export class MobileLogInPage implements OnInit {
   emiratesId: string;
   password: string;
 
+  loading = false;
   constructor(public amplify:AmplifyService, public session: SessionService,private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -46,14 +47,20 @@ export class MobileLogInPage implements OnInit {
 
 
   async login() {
-    
+    this.loading = true;
     if(this.password == null)
       this.presentAlert("Please Enter Password");
       
     try {
       const user = await this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
       this.session.user = user;
+      this.session.eid = this.emiratesId.toString();
       await this.session.getPoints(this.emiratesId.toString());
+      this.session.getEvents();
+      this.session.checkRecords(this.emiratesId.toString());
+      this.session.getDonations(this.emiratesId.toString());
+      this.session.getHospitals();
+      this.loading = false;
       this.router.navigate(['mobile-user-home']);
     }
     catch (err) {

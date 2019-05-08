@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar text-center color="dark">
+    <h3>
+      <ion-icon name="water" color="danger" size="medium"></ion-icon> <b>Blood Donation</b>
+    </h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <ion-grid>
+        <ion-col>
+          <div>
+            <full-calendar id="calendar" (dateClick)="handleDateClick($event)" [themeSystem]="bootstrap4"
+              [plugins]="calendarPlugins" [events]="calendarevents"></full-calendar>
+          </div>
+        </ion-col>
+        <ion-button shape="round" color="danger" size="medium" (click)="return()">
+          <ion-icon name="arrow-back"></ion-icon>&nbsp;Return
+        </ion-button>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

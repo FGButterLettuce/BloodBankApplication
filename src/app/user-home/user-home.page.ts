@@ -21,6 +21,10 @@ export class UserHomePage implements OnInit {
   ngOnInit() {
   }
 
+  calendar(){
+    this.router.navigate(['view-calendar']);
+
+  }
   points() {
     this.router.navigate(['points']);
   }
@@ -31,10 +35,9 @@ export class UserHomePage implements OnInit {
 
   }
 
-  logout() {
-
-    this.amplifyService.auth().signOut().then(data =>
-      console.log(data))
+  async logout() {
+    this.session.clearall()
+    await this.amplifyService.auth().signOut()
       .catch(err => console.log(err));
     this.router.navigate(['home']);
   }

@@ -1,11 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>schedule</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-  <!-- <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar> -->
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <ion-grid>
@@ -18,6 +11,20 @@
         <ion-col>
           <div>
             <ion-list>
+              <b color="white">Location</b><br>
+              Please Select Either Campaign or Hospital as Location
+              <ion-item>
+                <b>Campaign</b>
+                <ion-select placeholder="Select One" [(ngModel)]="selectedcid">
+                  <ion-select-option *ngFor="let i of campaign" value="i.cid">{{i.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <b>Hospital</b>
+                <ion-select placeholder="Select One" [(ngModel)]="selectedhid">
+                  <ion-select-option *ngFor="let j of hospital" value="j.hid">{{j.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
               <ion-item>
                 <b>Select Time: </b>
                 <ion-datetime placeholder="" display-format="h:mm a" picker-format="h mm a" [(ngModel)]="time">
@@ -30,7 +37,6 @@
               </ion-item>
               <ion-item *ngIf="!recordexists.val">
                 <b>Blood Group</b>
-
                 <ion-select placeholder="Select One" [(ngModel)]="bloodgroup">
                   <ion-select-option color value="O+">O+</ion-select-option>
                   <ion-select-option value="O-">O-</ion-select-option>
@@ -44,9 +50,12 @@
               </ion-item>
             </ion-list>
             <div text-center>
-              <ion-button shape="round" color="danger" size="large" (click)="schedule()">
+              <ion-button shape="round" color="danger" size="large" (click)="scheduleCampaignDonation()">
                 <ion-icon name="calendar"></ion-icon>&nbsp;Schedule
               </ion-button>
+              <ion-button shape="round" color="danger" size="large" (click)="cancel()">
+                  <ion-icon name="arrow-back"></ion-icon>&nbsp;Cancel
+                </ion-button>
             </div>
           </div>
         </ion-col>

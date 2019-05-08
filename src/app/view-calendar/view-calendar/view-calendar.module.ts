@@ -5,15 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MobileSchedulePage } from './mobile-schedule.page';
-
+import { ViewCalendarPage } from './view-calendar.page';
 import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
-
 
 const routes: Routes = [
   {
     path: '',
-    component: MobileSchedulePage
+    component: ViewCalendarPage
   }
 ];
 
@@ -25,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MobileSchedulePage]
+  declarations: [ViewCalendarPage]
 })
-export class MobileSchedulePageModule {}
+export class ViewCalendarPageModule {}

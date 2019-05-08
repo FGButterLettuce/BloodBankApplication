@@ -17,12 +17,14 @@
           <h2>Password</h2>
           <input type="password" id="password" class="fadeIn third" name="login" [(ngModel)]="password">
           <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()">
+          <ion-spinner name="dots" size="large" *ngIf="loading" color="danger"></ion-spinner>
         </form>
+
     
         <!-- Remind Password -->
         <div id="formFooter">
           <a class="underlineHover" (click)="signup()">Dont have an account?</a>
         </div>
       </div>
-    </div>    
+    </div>
   </body>

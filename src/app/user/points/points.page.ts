@@ -13,15 +13,20 @@ export class PointsPage implements OnInit {
 
   id: Number;
   pointsum;
-  pointreturn;  
-    
-  constructor(private amplifyService: AmplifyService, private router: Router, private session : SessionService) {
+  pointreturn;
+
+  constructor(private amplifyService: AmplifyService, private router: Router, private session: SessionService) {
     this.pointreturn = this.session.pointobj
     this.pointsum = this.session.pointsum
-    this.pointreturn.points.map((x)=>{
-      x.date = moment(x.date).format('LLL')
-    });
-   }
-   ngOnInit() {
+    if (this.pointreturn.points) {
+      this.pointreturn.points.map((x) => {
+        x.date = moment(x.date).format('LLL')
+      });
+    }
+  }
+  ngOnInit() {
+  }
+  return() {
+    this.router.navigate(['user-home']);
   }
 }
