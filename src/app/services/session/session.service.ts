@@ -20,7 +20,8 @@ export class SessionService {
   }
   donationexists ={
     start: null,
-    end:  null
+    end:  null,
+    bloodgroup: null
   };
 
   constructor(private amplifyService: AmplifyService) {
@@ -42,7 +43,8 @@ export class SessionService {
     }
     this.donationexists ={
       start: null,
-      end:  null
+      end:  null,
+      bloodgroup: null
     };
   }
   async getPoints(eid) {
@@ -95,6 +97,7 @@ export class SessionService {
       if (i.eid == ueid && i.success == true) {
         this.donationexists.start = i.date;
         this.donationexists.end = moment(i.date).add(90,'days').format('YYYY-MM-DD');
+        this.donationexists.bloodgroup = i.bloodgroup;
       }
     }
   }

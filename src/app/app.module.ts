@@ -18,6 +18,10 @@ import { SessionService } from './services/session/session.service';
 import { CountUpModule } from 'countup.js-angular2';
 import * as moment from 'moment';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { environment } from '../environments/environment';
 
 
 import Amplify from 'aws-amplify';
@@ -29,7 +33,8 @@ Amplify.configure(amplify);
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule, AmplifyAngularModule],
+    BrowserModule, IonicModule.forRoot(), AppRoutingModule,CountUpModule, AmplifyAngularModule, AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule,AngularFirestoreModule],
   providers: [
     StatusBar,
     SessionService,

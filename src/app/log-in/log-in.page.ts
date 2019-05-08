@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { SessionService } from '../services/session/session.service';
 import { AmplifyService } from 'aws-amplify-angular';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { FcmService } from '../services/fcm/fcm.service';
 
-
-// import Amplify from 'aws-amplify';
-// import amplify from 'src/aws-exports.js';
-// Amplify.configure(amplify);
 
 @Component({
   selector: 'app-log-in',
@@ -18,9 +16,13 @@ export class LogInPage implements OnInit {
 
   emiratesId: string;
   password: string;
+  collection;
 
   loading = false;
-  constructor(public amplify:AmplifyService, public session: SessionService,private router: Router, public alertController: AlertController) { }
+  constructor(public amplify: AmplifyService, public session: SessionService, private router: Router, public alertController: AlertController, public afs: AngularFirestore
+    , public fcm: FcmService) {
+    this.collection = this.afs.collection('users');
+  }
 
   ngOnInit() {
   }
@@ -37,8 +39,8 @@ export class LogInPage implements OnInit {
 
   async login() {
     this.loading = true;
-    if(this.password == null)
-    this.presentAlert("Please Enter Password");
+    if (this.password == null)
+      this.presentAlert("Please Enter Password");
     try {
       const user = await this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
       this.session.user = user;
@@ -49,6 +51,7 @@ export class LogInPage implements OnInit {
       this.session.getDonations(this.emiratesId.toString());
       this.session.getHospitals();
       this.loading = false;
+      this.addtoFB();
       this.router.navigate(['user-home']);
     }
     catch (err) {
@@ -81,5 +84,30 @@ export class LogInPage implements OnInit {
 
   signup() {
     this.router.navigate(['sign-up']);
+  }
+ addtoFB() {
+   setTimeout(() => {
+    var uid = this.session.user.attributes.sub
+    if (this.session.recordexists.bloodgroup) {
+      var sendrec = {
+        cogid: uid,
+        eid: this.emiratesId.toString(),
+        bloodgroup: this.session.recordexists.bloodgroup,
+        token: this.fcm.msgtoken
+      }
+      this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
+
+    }
+    else if (this.session.donationexists.bloodgroup) {
+      var senddon = {
+        cogid: uid,
+        eid: this.emiratesId.toString(),
+        bloodgroup: this.session.donationexists.bloodgroup,
+        token: this.fcm.msgtoken
+      }
+      
+      this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
+    }
+   },2500)
   }
 }

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { SessionService } from '../services/session/session.service';
 import { AmplifyService } from 'aws-amplify-angular';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { FcmService } from '../services/fcm/fcm.service';
 
 
 
@@ -20,9 +22,13 @@ export class MobileLogInPage implements OnInit {
 
   emiratesId: string;
   password: string;
+  collection;
 
   loading = false;
-  constructor(public amplify:AmplifyService, public session: SessionService,private router: Router, public alertController: AlertController) { }
+  constructor(public amplify:AmplifyService, public session: SessionService,private router: Router, public alertController: AlertController, public afs:AngularFirestore
+    ,public fcm:FcmService) {
+      this.collection = this.afs.collection('users');
+     }
 
   ngOnInit() {
   }
@@ -94,6 +100,26 @@ export class MobileLogInPage implements OnInit {
   signup(){
     this.router.navigate(['mobile-sign-up']);
   }
+  addtoFB(){ 
+    var uid = this.session.user.attributes.sub
+    if(this.session.recordexists.bloodgroup){
+      var sendrec = {
+        cogid:uid,
+        eid: this.emiratesId.toString(),
+        bloodgroup: this.session.recordexists.bloodgroup,
+        token: this.fcm.msgtoken
+      }
+      this.collection.add(sendrec);
 
-
+    }
+    else if(this.session.donationexists.bloodgroup){
+      var senddon ={
+        cogid:uid,
+        eid: this.emiratesId.toString(),
+        bloodgroup: this.session.donationexists.bloodgroup,
+        token: this.fcm.msgtoken
+      }
+      this.collection.add(senddon);
+    }
+  }
 }
