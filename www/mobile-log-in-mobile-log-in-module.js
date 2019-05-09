@@ -214,7 +214,7 @@ var MobileLogInPage = /** @class */ (function () {
     };
     MobileLogInPage.prototype.addtoFB = function () {
         var uid = this.session.user.attributes.sub;
-        if (this.session.recordexists.bloodgroup) {
+        if (this.session.recordexists.val) {
             var sendrec = {
                 cogid: uid,
                 eid: this.emiratesId.toString(),

@@ -200,13 +200,14 @@ var LogInPage = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             var uid = _this.session.user.attributes.sub;
-            if (_this.session.recordexists.bloodgroup) {
+            if (_this.session.recordexists.val) {
                 var sendrec = {
                     cogid: uid,
                     eid: _this.emiratesId.toString(),
                     bloodgroup: _this.session.recordexists.bloodgroup,
                     token: _this.fcm.msgtoken
                 };
+                console.log("trying rec");
                 _this.collection.doc("" + _this.emiratesId.toString()).set(sendrec);
             }
             else if (_this.session.donationexists.bloodgroup) {
@@ -216,9 +217,10 @@ var LogInPage = /** @class */ (function () {
                     bloodgroup: _this.session.donationexists.bloodgroup,
                     token: _this.fcm.msgtoken
                 };
+                console.log(senddon);
                 _this.collection.doc("" + _this.emiratesId.toString()).set(senddon);
             }
-        }, 2500);
+        }, 3000);
     };
     LogInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

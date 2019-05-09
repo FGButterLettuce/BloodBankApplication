@@ -15,7 +15,7 @@
               Please Select Either Campaign or Hospital as Location
               <ion-item>
                 <b>Campaign</b>
-                <ion-select placeholder="Select One" [(ngModel)]="selectedcid">
+                <ion-select placeholder="Select One"  [(ngModel)]="selectedcid">
                   <ion-select-option *ngFor="let i of campaign" value="{{i.cid}}">{{i.name}}</ion-select-option>
                 </ion-select>
               </ion-item>

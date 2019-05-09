@@ -149,8 +149,8 @@ var MobileSchedulePage = /** @class */ (function () {
         });
     };
     MobileSchedulePage.prototype.scheduleCampaignDonation = function () {
-        if (this.recordexists)
-            this.bloodgroup = this.recordexists;
+        if (this.recordexists.val)
+            this.bloodgroup = this.recordexists.bloodgroup;
         if (this.selectedcid && this.selectedhid) {
             this.selectedcid = null;
             this.selectedhid = null;
@@ -168,30 +168,34 @@ var MobileSchedulePage = /** @class */ (function () {
                     body: {
                         eid: this.session.eid,
                         bloodgroup: this.bloodgroup,
-                        date: this.date.split('T')[0],
-                        // time: this.time.split('T')[1],
+                        date: this.date.split('T')[0] + this.time.split('T')[1],
                         success: false,
-                        cid: this.selectedcid
+                        cid: this.selectedcid,
+                        hid: true
                     }
                 };
-                this.amplifyService.api().post('donationsapi', "/donations", { donation: donation })
+                this.amplifyService.api().post('donationsapi', "/donations", donation)
                     .catch(function (err) { return console.log(err); });
                 // console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
                 // console.log(this.bloodgroup);
+                this.presentAlert("Success");
+                this.cancel();
             }
             else if (this.selectedhid) {
                 var donation = {
                     body: {
                         eid: this.session.eid,
                         bloodgroup: this.bloodgroup,
-                        date: this.date.split('T')[0],
-                        // time: this.time.split('T')[1],
+                        date: this.date.split('T')[0] + this.time.split('T')[1],
                         success: false,
-                        hid: this.selectedhid
+                        hid: this.selectedhid,
+                        cid: true
                     }
                 };
-                this.amplifyService.api().post('donationsapi', "/donations", {})
+                this.amplifyService.api().post('donationsapi', "/donations", donation)
                     .catch(function (err) { return console.log(err); });
+                this.presentAlert("Success");
+                this.cancel();
             }
         }
     };

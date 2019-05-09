@@ -61,7 +61,7 @@ var SchedulePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <ion-grid>\n        <ion-col>\n          <div>\n            <full-calendar id=\"calendar\" (dateClick)=\"handleDateClick($event)\" [themeSystem]=\"bootstrap4\"\n              [plugins]=\"calendarPlugins\" [events]=\"calendarevents\"></full-calendar>\n          </div>\n        </ion-col>\n        <ion-col>\n          <div>\n            <ion-list>\n              <b color=\"white\">Location</b><br>\n              Please Select Either Campaign or Hospital as Location\n              <ion-item>\n                <b>Campaign</b>\n                <ion-select placeholder=\"Select One\" [(ngModel)]=\"selectedcid\">\n                  <ion-select-option *ngFor=\"let i of campaign\" value=\"i.cid\">{{i.name}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <b>Hospital</b>\n                <ion-select placeholder=\"Select One\" [(ngModel)]=\"selectedhid\">\n                  <ion-select-option *ngFor=\"let j of hospital\" value=\"j.hid\">{{j.name}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <b>Select Time: </b>\n                <ion-datetime placeholder=\"\" display-format=\"h:mm a\" picker-format=\"h mm a\" [(ngModel)]=\"time\">\n                </ion-datetime>\n              </ion-item>\n              <ion-item>\n                <b>Select Date: </b>\n                <ion-datetime placeholder=\"\" display-format=\"DD/MM/YYYY\" picker-format=\"DD MMMM YYYY\"\n                  [(ngModel)]=\"date\"></ion-datetime>\n              </ion-item>\n              <ion-item *ngIf=\"!recordexists.val\">\n                <b>Blood Group</b>\n                <ion-select placeholder=\"Select One\" [(ngModel)]=\"bloodgroup\">\n                  <ion-select-option color value=\"O+\">O+</ion-select-option>\n                  <ion-select-option value=\"O-\">O-</ion-select-option>\n                  <ion-select-option value=\"A+\">A+</ion-select-option>\n                  <ion-select-option value=\"A-\">A-</ion-select-option>\n                  <ion-select-option value=\"B+\">B+</ion-select-option>\n                  <ion-select-option value=\"B-\">B-</ion-select-option>\n                  <ion-select-option value=\"AB+\">AB+</ion-select-option>\n                  <ion-select-option value=\"AB-\">AB-</ion-select-option>\n                </ion-select>\n              </ion-item>\n            </ion-list>\n            <div text-center>\n              <ion-button shape=\"round\" color=\"danger\" size=\"large\" (click)=\"scheduleCampaignDonation()\">\n                <ion-icon name=\"calendar\"></ion-icon>&nbsp;Schedule\n              </ion-button>\n              <ion-button shape=\"round\" color=\"danger\" size=\"large\" (click)=\"cancel()\">\n                  <ion-icon name=\"arrow-back\"></ion-icon>&nbsp;Cancel\n                </ion-button>\n            </div>\n          </div>\n        </ion-col>\n      </ion-grid>\n    </div>\n  </div>\n</ion-content>"
+module.exports = "<ion-content>\n  <div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <ion-grid>\n        <ion-col>\n          <div>\n            <full-calendar id=\"calendar\" (dateClick)=\"handleDateClick($event)\" [themeSystem]=\"bootstrap4\"\n              [plugins]=\"calendarPlugins\" [events]=\"calendarevents\"></full-calendar>\n          </div>\n        </ion-col>\n        <ion-col>\n          <div>\n            <ion-list>\n              <b color=\"white\">Location</b><br>\n              Please Select Either Campaign or Hospital as Location\n              <ion-item>\n                <b>Campaign</b>\n                <ion-select placeholder=\"Select One\"  [(ngModel)]=\"selectedcid\">\n                  <ion-select-option *ngFor=\"let i of campaign\" value=\"{{i.cid}}\">{{i.name}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <b>Hospital</b>\n                <ion-select placeholder=\"Select One\" [(ngModel)]=\"selectedhid\">\n                  <ion-select-option *ngFor=\"let j of hospital\" value=\"{{j.hid}}\">{{j.name}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <b>Select Time: </b>\n                <ion-datetime placeholder=\"\" display-format=\"h:mm a\" picker-format=\"h mm a\" [(ngModel)]=\"time\">\n                </ion-datetime>\n              </ion-item>\n              <ion-item>\n                <b>Select Date: </b>\n                <ion-datetime placeholder=\"\" display-format=\"DD/MM/YYYY\" picker-format=\"DD MMMM YYYY\"\n                  [(ngModel)]=\"date\"></ion-datetime>\n              </ion-item>\n              <ion-item *ngIf=\"!recordexists.val\">\n                <b>Blood Group</b>\n                <ion-select placeholder=\"Select One\" [(ngModel)]=\"bloodgroup\">\n                  <ion-select-option color value=\"O+\">O+</ion-select-option>\n                  <ion-select-option value=\"O-\">O-</ion-select-option>\n                  <ion-select-option value=\"A+\">A+</ion-select-option>\n                  <ion-select-option value=\"A-\">A-</ion-select-option>\n                  <ion-select-option value=\"B+\">B+</ion-select-option>\n                  <ion-select-option value=\"B-\">B-</ion-select-option>\n                  <ion-select-option value=\"AB+\">AB+</ion-select-option>\n                  <ion-select-option value=\"AB-\">AB-</ion-select-option>\n                </ion-select>\n              </ion-item>\n            </ion-list>\n            <div text-center>\n              <ion-button shape=\"round\" color=\"danger\" size=\"large\" (click)=\"scheduleCampaignDonation()\">\n                <ion-icon name=\"calendar\"></ion-icon>&nbsp;Schedule\n              </ion-button>\n              <ion-button shape=\"round\" color=\"danger\" size=\"large\" (click)=\"cancel()\">\n                  <ion-icon name=\"arrow-back\"></ion-icon>&nbsp;Cancel\n                </ion-button>\n            </div>\n          </div>\n        </ion-col>\n      </ion-grid>\n    </div>\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -115,6 +115,9 @@ var SchedulePage = /** @class */ (function () {
         this.hospital = [];
         this.campaign = [];
         this.recordexists = this.session.recordexists;
+        this.donationexists = this.session.donationexists.bloodgroup;
+        if (this.session.donationexists.bloodgroup)
+            this.recordexists.val = true;
         for (var _i = 0, _a = this.session.eventsobj; _i < _a.length; _i++) {
             var i = _a[_i];
             this.calendarevents.push({ title: i.name, start: i.start, end: i.end });
@@ -149,8 +152,8 @@ var SchedulePage = /** @class */ (function () {
         });
     };
     SchedulePage.prototype.scheduleCampaignDonation = function () {
-        if (this.recordexists)
-            this.bloodgroup = this.recordexists;
+        if (this.recordexists.val)
+            this.bloodgroup = this.recordexists.bloodgroup;
         if (this.selectedcid && this.selectedhid) {
             this.selectedcid = null;
             this.selectedhid = null;
@@ -174,8 +177,10 @@ var SchedulePage = /** @class */ (function () {
                         hid: null
                     }
                 };
-                this.amplifyService.api().post('donationsapi', "/donations", { donation: donation })
+                this.amplifyService.api().post('donationsapi', "/donations", donation)
                     .catch(function (err) { return console.log(err); });
+                this.presentAlert("Success");
+                this.cancel();
                 // console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
                 // console.log(this.bloodgroup);
             }
@@ -184,15 +189,16 @@ var SchedulePage = /** @class */ (function () {
                     body: {
                         eid: this.session.eid,
                         bloodgroup: this.bloodgroup,
-                        date: this.date.split('T')[0],
-                        // time: this.time.split('T')[1],
+                        date: this.date.split('T')[0] + this.time.split('T')[1],
                         success: false,
                         hid: this.selectedhid,
                         cid: null
                     }
                 };
-                this.amplifyService.api().post('donationsapi', "/donations", {})
+                this.amplifyService.api().post('donationsapi', "/donations", donation)
                     .catch(function (err) { return console.log(err); });
+                this.presentAlert("Success");
+                this.cancel();
             }
         }
     };
