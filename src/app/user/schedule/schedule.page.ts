@@ -74,7 +74,7 @@ export class SchedulePage implements OnInit {
             hid: null
           }
         }
-        this.amplifyService.api().post('donationsapi', `/donations`, {donation})
+        this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
         // console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
         // console.log(this.bloodgroup);
@@ -91,7 +91,7 @@ export class SchedulePage implements OnInit {
             cid: null
           }
         }
-        this.amplifyService.api().post('donationsapi', `/donations`, {})
+        this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
       }
     }

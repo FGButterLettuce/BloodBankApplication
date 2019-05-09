@@ -71,10 +71,11 @@ export class MobileSchedulePage implements OnInit {
             date: this.date.split('T')[0],
             // time: this.time.split('T')[1],
             success: false,
-            cid: this.selectedcid
+            cid: this.selectedcid,
+            hid: null
           }
         }
-        this.amplifyService.api().post('donationsapi', `/donations`, {donation})
+        this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
         // console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
         // console.log(this.bloodgroup);
@@ -87,10 +88,11 @@ export class MobileSchedulePage implements OnInit {
             date: this.date.split('T')[0],
             // time: this.time.split('T')[1],
             success: false,
-            hid: this.selectedhid
+            hid: this.selectedhid,
+            cid:null
           }
         }
-        this.amplifyService.api().post('donationsapi', `/donations`, {})
+        this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
       }
     }
