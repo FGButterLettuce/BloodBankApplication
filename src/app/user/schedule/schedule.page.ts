@@ -68,10 +68,10 @@ export class SchedulePage implements OnInit {
           body: {
             eid: this.session.eid,
             bloodgroup: this.bloodgroup,
-            date: this.date.split('T')[0],
-            // time: this.time.split('T')[1],
+            date: this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1],
             success: false,
-            cid: this.selectedcid
+            cid: this.selectedcid,
+            hid: null
           }
         }
         this.amplifyService.api().post('donationsapi', `/donations`, {donation})
@@ -87,7 +87,8 @@ export class SchedulePage implements OnInit {
             date: this.date.split('T')[0],
             // time: this.time.split('T')[1],
             success: false,
-            hid: this.selectedhid
+            hid: this.selectedhid,
+            cid: null
           }
         }
         this.amplifyService.api().post('donationsapi', `/donations`, {})
