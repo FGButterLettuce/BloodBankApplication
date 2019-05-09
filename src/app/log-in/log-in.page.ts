@@ -88,13 +88,14 @@ export class LogInPage implements OnInit {
  addtoFB() {
    setTimeout(() => {
     var uid = this.session.user.attributes.sub
-    if (this.session.recordexists.bloodgroup) {
+    if (this.session.recordexists.val) {
       var sendrec = {
         cogid: uid,
         eid: this.emiratesId.toString(),
         bloodgroup: this.session.recordexists.bloodgroup,
         token: this.fcm.msgtoken
       }
+      console.log("trying rec")
       this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
 
     }
@@ -105,9 +106,10 @@ export class LogInPage implements OnInit {
         bloodgroup: this.session.donationexists.bloodgroup,
         token: this.fcm.msgtoken
       }
+      console.log(senddon)
       
       this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
     }
-   },2500)
+   },3000)
   }
 }

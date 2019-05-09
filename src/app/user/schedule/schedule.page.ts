@@ -22,11 +22,15 @@ export class SchedulePage implements OnInit {
 
   calendarevents = [];
   recordexists;
+  donationexists;
   hospital = [];
   campaign = [];
 
   constructor(private amplifyService: AmplifyService, public session: SessionService, public alertController: AlertController, public router: Router) {
     this.recordexists = this.session.recordexists;
+    this.donationexists = this.session.donationexists.bloodgroup;
+    if(this.session.donationexists.bloodgroup)
+      this.recordexists.val = true;
     for (let i of this.session.eventsobj) {
       this.calendarevents.push({ title: i.name, start: i.start, end: i.end })
       this.campaign.push({ cid: i.cid, name: i.name });
@@ -49,8 +53,8 @@ export class SchedulePage implements OnInit {
     alert.present();
   }
   scheduleCampaignDonation() {
-    if (this.recordexists)
-      this.bloodgroup = this.recordexists;
+    if (this.recordexists.val)
+      this.bloodgroup = this.recordexists.bloodgroup;
     if (this.selectedcid && this.selectedhid) {
       this.selectedcid = null;
       this.selectedhid = null;
@@ -76,6 +80,8 @@ export class SchedulePage implements OnInit {
         }
         this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
+          this.presentAlert("Success");
+          this.cancel();
         // console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
         // console.log(this.bloodgroup);
       }
@@ -84,8 +90,7 @@ export class SchedulePage implements OnInit {
           body: {
             eid: this.session.eid,
             bloodgroup: this.bloodgroup,
-            date: this.date.split('T')[0],
-            // time: this.time.split('T')[1],
+            date: this.date.split('T')[0] + this.time.split('T')[1],
             success: false,
             hid: this.selectedhid,
             cid: null
@@ -93,6 +98,8 @@ export class SchedulePage implements OnInit {
         }
         this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
+          this.presentAlert("Success");
+          this.cancel();
       }
     }
   }

@@ -102,7 +102,7 @@ export class MobileLogInPage implements OnInit {
   }
   addtoFB(){ 
     var uid = this.session.user.attributes.sub
-    if(this.session.recordexists.bloodgroup){
+    if(this.session.recordexists.val){
       var sendrec = {
         cogid:uid,
         eid: this.emiratesId.toString(),

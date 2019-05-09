@@ -16,13 +16,13 @@
               <ion-item>
                 <b>Campaign</b>
                 <ion-select placeholder="Select One" [(ngModel)]="selectedcid">
-                  <ion-select-option *ngFor="let i of campaign" value="i.cid">{{i.name}}</ion-select-option>
+                  <ion-select-option *ngFor="let i of campaign" value="{{i.cid}}">{{i.name}}</ion-select-option>
                 </ion-select>
               </ion-item>
               <ion-item>
                 <b>Hospital</b>
                 <ion-select placeholder="Select One" [(ngModel)]="selectedhid">
-                  <ion-select-option *ngFor="let j of hospital" value="j.hid">{{j.name}}</ion-select-option>
+                  <ion-select-option *ngFor="let j of hospital" value="{{j.hid}}">{{j.name}}</ion-select-option>
                 </ion-select>
               </ion-item>
               <ion-item>
