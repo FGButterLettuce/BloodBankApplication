@@ -85,31 +85,31 @@ export class LogInPage implements OnInit {
   signup() {
     this.router.navigate(['sign-up']);
   }
- addtoFB() {
-   setTimeout(() => {
-    var uid = this.session.user.attributes.sub
-    if (this.session.recordexists.val) {
-      var sendrec = {
-        cogid: uid,
-        eid: this.emiratesId.toString(),
-        bloodgroup: this.session.recordexists.bloodgroup,
-        token: this.fcm.msgtoken
-      }
-      console.log("trying rec")
-      this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
-
-    }
-    else if (this.session.donationexists.bloodgroup) {
-      var senddon = {
-        cogid: uid,
-        eid: this.emiratesId.toString(),
-        bloodgroup: this.session.donationexists.bloodgroup,
-        token: this.fcm.msgtoken
-      }
-      console.log(senddon)
-      
-      this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
-    }
-   },3000)
-  }
+  addtoFB() {
+    setTimeout(() => {
+     var uid = this.session.user.attributes.sub
+     if (this.session.recordexists.val) {
+       var sendrec = {
+         cogid: uid,
+         eid: this.emiratesId.toString(),
+         bloodgroup: this.session.recordexists.bloodgroup,
+         token: this.fcm.msgtoken
+       }
+       console.log("trying rec")
+       this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
+ 
+     }
+     else if (this.session.donationexists.val) {
+       var senddon = {
+         cogid: uid,
+         eid: this.emiratesId.toString(),
+         bloodgroup: this.session.donationexists.bloodgroup,
+         token: this.fcm.msgtoken
+       }
+       console.log(senddon)
+       
+       this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
+     }
+    },3000)
+   }
 }

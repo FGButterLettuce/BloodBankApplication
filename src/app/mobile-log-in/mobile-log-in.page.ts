@@ -115,7 +115,7 @@ export class MobileLogInPage implements OnInit {
        this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
  
      }
-     else if (this.session.donationexists.bloodgroup) {
+     else if (this.session.donationexists.val) {
        var senddon = {
          cogid: uid,
          eid: this.emiratesId.toString(),
