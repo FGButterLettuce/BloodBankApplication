@@ -102,7 +102,7 @@ export class SessionService {
         this.donationexists.end = moment(i.date).add(90,'days').format('YYYY-MM-DD');
         this.donationexists.bloodgroup = i.bloodgroup;
       }
-      else if(i.eid == ueid && i.success == false) {
+      if(i.eid == ueid && i.success == false) {
         this.donationexists.val = true;
         this.donationexists.start = i.date;
         this.donationexists.end = i.date;

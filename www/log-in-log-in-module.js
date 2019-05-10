@@ -209,8 +209,9 @@ var LogInPage = /** @class */ (function () {
                 };
                 console.log("trying rec");
                 _this.collection.doc("" + _this.emiratesId.toString()).set(sendrec);
+                console.log(sendrec);
             }
-            else if (_this.session.donationexists.bloodgroup) {
+            else if (_this.session.donationexists.val) {
                 var senddon = {
                     cogid: uid,
                     eid: _this.emiratesId.toString(),

@@ -97,7 +97,7 @@ export class LogInPage implements OnInit {
        }
        console.log("trying rec")
        this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
- 
+       console.log(sendrec);
      }
      else if (this.session.donationexists.val) {
        var senddon = {
@@ -106,7 +106,7 @@ export class LogInPage implements OnInit {
          bloodgroup: this.session.donationexists.bloodgroup,
          token: this.fcm.msgtoken
        }
-       console.log(senddon)
+       console.log(senddon);
        
        this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
      }

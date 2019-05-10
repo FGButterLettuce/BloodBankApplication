@@ -113,7 +113,7 @@ export class MobileLogInPage implements OnInit {
        }
        console.log("trying rec")
        this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
- 
+       console.log(sendrec)
      }
      else if (this.session.donationexists.val) {
        var senddon = {

@@ -1486,6 +1486,7 @@ var SessionService = /** @class */ (function () {
             bloodgroup: String
         };
         this.donationexists = {
+            val: false,
             start: null,
             end: null,
             bloodgroup: null
@@ -1503,6 +1504,7 @@ var SessionService = /** @class */ (function () {
             bloodgroup: String
         };
         this.donationexists = {
+            val: false,
             start: null,
             end: null,
             bloodgroup: null
@@ -1588,8 +1590,15 @@ var SessionService = /** @class */ (function () {
                         for (_i = 0, donations_1 = donations; _i < donations_1.length; _i++) {
                             i = donations_1[_i];
                             if (i.eid == ueid && i.success == true) {
+                                this.donationexists.val = true;
                                 this.donationexists.start = i.date;
                                 this.donationexists.end = moment__WEBPACK_IMPORTED_MODULE_3__(i.date).add(90, 'days').format('YYYY-MM-DD');
+                                this.donationexists.bloodgroup = i.bloodgroup;
+                            }
+                            if (i.eid == ueid && i.success == false) {
+                                this.donationexists.val = true;
+                                this.donationexists.start = i.date;
+                                this.donationexists.end = i.date;
                                 this.donationexists.bloodgroup = i.bloodgroup;
                             }
                         }
