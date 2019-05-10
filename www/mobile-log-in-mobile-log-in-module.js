@@ -176,6 +176,7 @@ var MobileLogInPage = /** @class */ (function () {
                         this.session.getDonations(this.emiratesId.toString());
                         this.session.getHospitals();
                         this.loading = false;
+                        this.addtoFB();
                         this.router.navigate(['mobile-user-home']);
                         return [3 /*break*/, 5];
                     case 4:
@@ -213,25 +214,30 @@ var MobileLogInPage = /** @class */ (function () {
         this.router.navigate(['mobile-sign-up']);
     };
     MobileLogInPage.prototype.addtoFB = function () {
-        var uid = this.session.user.attributes.sub;
-        if (this.session.recordexists.val) {
-            var sendrec = {
-                cogid: uid,
-                eid: this.emiratesId.toString(),
-                bloodgroup: this.session.recordexists.bloodgroup,
-                token: this.fcm.msgtoken
-            };
-            this.collection.add(sendrec);
-        }
-        else if (this.session.donationexists.bloodgroup) {
-            var senddon = {
-                cogid: uid,
-                eid: this.emiratesId.toString(),
-                bloodgroup: this.session.donationexists.bloodgroup,
-                token: this.fcm.msgtoken
-            };
-            this.collection.add(senddon);
-        }
+        var _this = this;
+        setTimeout(function () {
+            var uid = _this.session.user.attributes.sub;
+            if (_this.session.recordexists.val) {
+                var sendrec = {
+                    cogid: uid,
+                    eid: _this.emiratesId.toString(),
+                    bloodgroup: _this.session.recordexists.bloodgroup,
+                    token: _this.fcm.msgtoken
+                };
+                console.log("trying rec");
+                _this.collection.doc("" + _this.emiratesId.toString()).set(sendrec);
+            }
+            else if (_this.session.donationexists.bloodgroup) {
+                var senddon = {
+                    cogid: uid,
+                    eid: _this.emiratesId.toString(),
+                    bloodgroup: _this.session.donationexists.bloodgroup,
+                    token: _this.fcm.msgtoken
+                };
+                console.log(senddon);
+                _this.collection.doc("" + _this.emiratesId.toString()).set(senddon);
+            }
+        }, 3000);
     };
     MobileLogInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

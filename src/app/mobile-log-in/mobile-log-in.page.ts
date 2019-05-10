@@ -67,6 +67,7 @@ export class MobileLogInPage implements OnInit {
       this.session.getDonations(this.emiratesId.toString());
       this.session.getHospitals();
       this.loading = false;
+      this.addtoFB();
       this.router.navigate(['mobile-user-home']);
     }
     catch (err) {
@@ -100,26 +101,31 @@ export class MobileLogInPage implements OnInit {
   signup(){
     this.router.navigate(['mobile-sign-up']);
   }
-  addtoFB(){ 
-    var uid = this.session.user.attributes.sub
-    if(this.session.recordexists.val){
-      var sendrec = {
-        cogid:uid,
-        eid: this.emiratesId.toString(),
-        bloodgroup: this.session.recordexists.bloodgroup,
-        token: this.fcm.msgtoken
-      }
-      this.collection.add(sendrec);
-
-    }
-    else if(this.session.donationexists.bloodgroup){
-      var senddon ={
-        cogid:uid,
-        eid: this.emiratesId.toString(),
-        bloodgroup: this.session.donationexists.bloodgroup,
-        token: this.fcm.msgtoken
-      }
-      this.collection.add(senddon);
-    }
-  }
+  addtoFB() {
+    setTimeout(() => {
+     var uid = this.session.user.attributes.sub
+     if (this.session.recordexists.val) {
+       var sendrec = {
+         cogid: uid,
+         eid: this.emiratesId.toString(),
+         bloodgroup: this.session.recordexists.bloodgroup,
+         token: this.fcm.msgtoken
+       }
+       console.log("trying rec")
+       this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
+ 
+     }
+     else if (this.session.donationexists.bloodgroup) {
+       var senddon = {
+         cogid: uid,
+         eid: this.emiratesId.toString(),
+         bloodgroup: this.session.donationexists.bloodgroup,
+         token: this.fcm.msgtoken
+       }
+       console.log(senddon)
+       
+       this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
+     }
+    },3000)
+   }
 }
