@@ -67,6 +67,8 @@ export class SchedulePage implements OnInit {
         this.time = null;
         this.presentAlert("Invalid Date Selected");
       }
+      if(this.bloodgroup == null)
+        this.presentAlert("Please Select Blood Group")
       if(this.selectedcid){
         let donation = {
           body: {
@@ -90,7 +92,7 @@ export class SchedulePage implements OnInit {
           body: {
             eid: this.session.eid,
             bloodgroup: this.bloodgroup,
-            date: this.date.split('T')[0] + this.time.split('T')[1],
+            date: this.date.split('T')[0] + 'T' + this.time.split('T')[1],
             success: false,
             hid: this.selectedhid,
             cid: null

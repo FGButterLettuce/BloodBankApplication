@@ -63,6 +63,8 @@ export class MobileSchedulePage implements OnInit {
         this.time = null;
         this.presentAlert("Invalid Date Selected");
       }
+      if(this.bloodgroup == null)
+        this.presentAlert("Please Select Blood Group")
       if(this.selectedcid){
         let donation = {
           body: {
