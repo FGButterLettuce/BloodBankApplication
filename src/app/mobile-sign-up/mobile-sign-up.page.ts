@@ -38,10 +38,13 @@ export class MobileSignUpPage implements OnInit {
     if (this.password1 != this.password2) {
       this.presentAlert('Passwords dont match!');
     }
+    if (this.password1.length < 8 || this.password2.length < 8) {
+      this.presentAlert('Password not 8 characters long!');
+    }
 
 
     else {
-     this.amplify.auth().signUp({
+      this.amplify.auth().signUp({
         username: this.emiratesId.toString(),
         password: this.password2,
         attributes: {
@@ -49,7 +52,7 @@ export class MobileSignUpPage implements OnInit {
           name: this.name
         },
       })
-        .then(data => 
+        .then(data =>
           this.alive = !this.alive)
         .catch(err => console.log(err, this.presentAlert(err)));
       console.log(this.emiratesId);
@@ -70,7 +73,7 @@ export class MobileSignUpPage implements OnInit {
   }
 
   login() {
-    this.router.navigate(['mobile-log-in']);
+    this.router.navigate(['log-in']);
   }
 
   async addusertoDB() {

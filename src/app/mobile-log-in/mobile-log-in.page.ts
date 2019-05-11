@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';  
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { SessionService } from '../services/session/session.service';
@@ -25,10 +25,10 @@ export class MobileLogInPage implements OnInit {
   collection;
 
   loading = false;
-  constructor(public amplify:AmplifyService, public session: SessionService,private router: Router, public alertController: AlertController, public afs:AngularFirestore
-    ,public fcm:FcmService) {
-      this.collection = this.afs.collection('users');
-     }
+  constructor(public amplify: AmplifyService, public session: SessionService, private router: Router, public alertController: AlertController, public afs: AngularFirestore
+    , public fcm: FcmService) {
+    this.collection = this.afs.collection('users');
+  }
 
   ngOnInit() {
   }
@@ -54,9 +54,9 @@ export class MobileLogInPage implements OnInit {
 
   async login() {
     this.loading = true;
-    if(this.password == null)
+    if (this.password == null)
       this.presentAlert("Please Enter Password");
-      
+
     try {
       const user = await this.amplify.auth().signIn(this.emiratesId.toString(), this.password)
       this.session.user = user;
@@ -98,34 +98,31 @@ export class MobileLogInPage implements OnInit {
     }
   }
 
-  signup(){
+  signup() {
     this.router.navigate(['mobile-sign-up']);
   }
   addtoFB() {
     setTimeout(() => {
-     var uid = this.session.user.attributes.sub
-     if (this.session.recordexists.val) {
-       var sendrec = {
-         cogid: uid,
-         eid: this.emiratesId.toString(),
-         bloodgroup: this.session.recordexists.bloodgroup,
-         token: this.fcm.msgtoken
-       }
-       console.log("trying rec")
-       this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
-       console.log(sendrec)
-     }
-     else if (this.session.donationexists.val) {
-       var senddon = {
-         cogid: uid,
-         eid: this.emiratesId.toString(),
-         bloodgroup: this.session.donationexists.bloodgroup,
-         token: this.fcm.msgtoken
-       }
-       console.log(senddon)
-       
-       this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
-     }
-    },3000)
-   }
+      var uid = this.session.user.attributes.sub
+      if (this.session.recordexists.val) {
+        var sendrec = {
+          cogid: uid,
+          eid: this.emiratesId.toString(),
+          bloodgroup: this.session.recordexists.bloodgroup,
+          token: this.fcm.msgtoken
+        }
+        this.collection.doc(`${this.emiratesId.toString()}`).set(sendrec);
+      }
+      else if (this.session.donationexists.val) {
+        var senddon = {
+          cogid: uid,
+          eid: this.emiratesId.toString(),
+          bloodgroup: this.session.donationexists.bloodgroup,
+          token: this.fcm.msgtoken
+        }
+
+        this.collection.doc(`${this.emiratesId.toString()}`).set(senddon);
+      }
+    }, 3000)
+  }
 }

@@ -1428,28 +1428,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_fire_messaging__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/messaging */ "./node_modules/@angular/fire/messaging/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 var FcmService = /** @class */ (function () {
-    function FcmService(afMessaging) {
+    function FcmService(afMessaging, alertController) {
         this.afMessaging = afMessaging;
+        this.alertController = alertController;
     }
+    FcmService.prototype.presentAlert = function (header, data) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: header,
+                            message: data,
+                            buttons: ['OK']
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        alert.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     FcmService.prototype.requestPermission = function () {
         var _this = this;
         this.afMessaging.requestPermission
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMapTo"])(this.afMessaging.tokenChanges))
             .subscribe(function (token) {
             _this.msgtoken = token;
-            console.log('Permission granted! Save to the server!', token);
-        }, function (error) { console.error(error); });
+            _this.presentAlert("Success", "Granted Permission for Emergency Alerts!");
+        }, function (error) { _this.presentAlert("Error", "You either declined permission for emergency alerts or the device is unsupported"); console.error(error); });
     };
     FcmService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_messaging__WEBPACK_IMPORTED_MODULE_2__["AngularFireMessaging"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_messaging__WEBPACK_IMPORTED_MODULE_2__["AngularFireMessaging"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
     ], FcmService);
     return FcmService;
 }());
@@ -1781,7 +1802,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/niranjan/BloodBank/BloodBankApplication/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/niranjan/BloodBankApplication/src/main.ts */"./src/main.ts");
 
 
 /***/ }),

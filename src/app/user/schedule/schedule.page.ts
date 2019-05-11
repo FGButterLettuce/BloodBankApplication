@@ -44,9 +44,9 @@ export class SchedulePage implements OnInit {
   }
   ngOnInit() {
   }
-  async presentAlert(data) {
+  async presentAlert(header, data) {
     let alert = await this.alertController.create({
-      header: 'Error',
+      header: header,
       message: data,
       buttons: ['OK']
     });
@@ -58,23 +58,31 @@ export class SchedulePage implements OnInit {
     if (this.selectedcid && this.selectedhid) {
       this.selectedcid = null;
       this.selectedhid = null;
-      this.presentAlert("Two Locations Selected, Please Select One")
+      this.presentAlert("Error", "Two Locations Selected, Please Select One")
     }
+    if (!this.selectedcid && !this.selectedhid) {
+      this.selectedcid = null;
+      this.selectedhid = null;
+      this.presentAlert("Error", "No Location Selected, Please Select One")
+    }    
+    if(this.date == null || this.time == null){
+      this.presentAlert("Error","Please Select Date")
+    }    
     else {
       var compare = moment(this.date.split('T')[0]).isBetween(this.session.donationexists.start,this.session.donationexists.end)
       if(compare){
         this.date = null;
         this.time = null;
-        this.presentAlert("Invalid Date Selected");
+        this.presentAlert("Error","Invalid Date Selected");
       }
       if(this.bloodgroup == null)
-        this.presentAlert("Please Select Blood Group")
+        this.presentAlert("Error","Please Select Blood Group")
       if(this.selectedcid){
         let donation = {
           body: {
             eid: this.session.eid,
             bloodgroup: this.bloodgroup,
-            date: this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1],
+            date: this.date.split('T')[0] + 'T' + this.time.split('T')[1],
             success: false,
             cid: this.selectedcid,
             hid: null
@@ -82,10 +90,8 @@ export class SchedulePage implements OnInit {
         }
         this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
-          this.presentAlert("Success");
-          this.cancel();
-        // console.log(this.datentime = this.date.split('T')[0] + 'T' + this.time.split('T')[1])
-        // console.log(this.bloodgroup);
+        this.presentAlert("Success","Donation Scheduled!");
+        this.cancel()
       }
       else if(this.selectedhid){
         let donation = {
@@ -100,12 +106,12 @@ export class SchedulePage implements OnInit {
         }
         this.amplifyService.api().post('donationsapi', `/donations`, donation)
           .catch(err => console.log(err));
-          this.presentAlert("Success");
-          this.cancel();
+          this.presentAlert("Success","Donation Scheduled!");
+          this.cancel()
       }
     }
   }
   cancel(){
-    this.router.navigate(['user-home']);
+    this.router.navigate(['mobile-user-home']);
   }
 }

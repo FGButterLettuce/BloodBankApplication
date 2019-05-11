@@ -22,7 +22,7 @@ export class SignUpPage implements OnInit {
   code: string;
 
 
-  constructor(private amplify: AmplifyService, private router: Router, public alertController: AlertController) {  }
+  constructor(private amplify: AmplifyService, private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -43,10 +43,13 @@ export class SignUpPage implements OnInit {
     if (this.password1 != this.password2) {
       this.presentAlert('Passwords dont match!');
     }
+    if (this.password1.length < 8 || this.password2.length < 8) {
+      this.presentAlert('Password not 8 characters long!');
+    }
 
 
     else {
-     this.amplify.auth().signUp({
+      this.amplify.auth().signUp({
         username: this.emiratesId.toString(),
         password: this.password2,
         attributes: {
@@ -54,7 +57,7 @@ export class SignUpPage implements OnInit {
           name: this.name
         },
       })
-        .then(data => 
+        .then(data =>
           this.alive = !this.alive)
         .catch(err => console.log(err, this.presentAlert(err)));
       console.log(this.emiratesId);
