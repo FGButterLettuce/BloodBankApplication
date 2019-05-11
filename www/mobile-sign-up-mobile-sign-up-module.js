@@ -157,7 +157,7 @@ var MobileSignUpPage = /** @class */ (function () {
             .catch(function (err) { return console.log(err); });
     };
     MobileSignUpPage.prototype.login = function () {
-        this.router.navigate(['log-in']);
+        this.router.navigate(['mobile-log-in']);
     };
     MobileSignUpPage.prototype.addusertoDB = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {

@@ -72,7 +72,7 @@ export class MobileSignUpPage implements OnInit {
   }
 
   login() {
-    this.router.navigate(['log-in']);
+    this.router.navigate(['mobile-log-in']);
   }
 
   async addusertoDB() {

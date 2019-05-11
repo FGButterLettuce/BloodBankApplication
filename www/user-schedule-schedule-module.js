@@ -211,7 +211,7 @@ var SchedulePage = /** @class */ (function () {
         }
     };
     SchedulePage.prototype.cancel = function () {
-        this.router.navigate(['mobile-user-home']);
+        this.router.navigate(['user-home']);
     };
     SchedulePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

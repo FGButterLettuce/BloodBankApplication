@@ -112,6 +112,6 @@ export class SchedulePage implements OnInit {
     }
   }
   cancel(){
-    this.router.navigate(['mobile-user-home']);
+    this.router.navigate(['user-home']);
   }
 }
