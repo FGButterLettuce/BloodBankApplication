@@ -141,7 +141,6 @@ var MobileSignUpPage = /** @class */ (function () {
                 return _this.alive = !_this.alive;
             })
                 .catch(function (err) { return console.log(err, _this.presentAlert(err)); });
-            console.log(this.emiratesId);
         }
     };
     MobileSignUpPage.prototype.confirmation = function () {

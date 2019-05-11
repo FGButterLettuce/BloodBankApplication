@@ -1312,7 +1312,7 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            console.log(_this.platform);
+            // console.log(this.platform);
             if (_this.platform.is('mobile')) {
                 _this.router.navigate(['mobile-home']);
             }

@@ -60,7 +60,6 @@ export class SignUpPage implements OnInit {
         .then(data =>
           this.alive = !this.alive)
         .catch(err => console.log(err, this.presentAlert(err)));
-      console.log(this.emiratesId);
     }
   }
 

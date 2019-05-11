@@ -14,7 +14,7 @@ export class UserHomePage implements OnInit {
   pointsum;
   constructor(private session: SessionService, private acr: ActivatedRoute, private router: Router, private amplifyService: AmplifyService, private events: Events) {
     this.name = this.session.user.attributes.name;
-    console.log(this.session.user.attributes)
+    // console.log(this.session.user.attributes)
     this.pointsum = this.session.pointsum;
   }
 

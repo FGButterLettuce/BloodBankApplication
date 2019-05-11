@@ -25,7 +25,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      console.log(this.platform);
+      // console.log(this.platform);
       if (this.platform.is('mobile')) {
         this.router.navigate(['mobile-home']);
       }

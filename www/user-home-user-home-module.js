@@ -106,7 +106,7 @@ var UserHomePage = /** @class */ (function () {
         this.amplifyService = amplifyService;
         this.events = events;
         this.name = this.session.user.attributes.name;
-        console.log(this.session.user.attributes);
+        // console.log(this.session.user.attributes)
         this.pointsum = this.session.pointsum;
     }
     UserHomePage.prototype.ngOnInit = function () {
